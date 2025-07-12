@@ -1,0 +1,4 @@
+# fyi, generated with pipreqs
+asn1crypto==1.4.0
+cryptography==45.0.5
+pydantic==2.11.7

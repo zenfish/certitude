@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate/Keys/etc. Visualization</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center; /* Align items vertically */
+        }
+
+        .header-button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .header-button:hover {
+            background-color: #0056b3;
+        }
+
+        .current-file-display {
+            font-size: 0.9em;
+            margin-left: 10px;
+            color: #ccc;
+        }
+        
+        .search-container {
+            padding: 10px 20px;
+            background-color: #eee;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            min-width: 150px;
+        }
+        
+        .search-field {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .search-button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+        .search-status {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #555;
+        }
+        
+        .visualization {
+            flex-grow: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .node circle {
+            /* stroke-width: 2px; */
+            stroke-width: 1px;
+            cursor: pointer;
+        }
+        
+        .node text {
+            font-size: 12px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .node .child-count {
+            font-size: 11px;
+            text-anchor: middle;
+            dominant-baseline: central;
+            font-weight: bold;
+            pointer-events: none;
+        }
+        
+        .link {
+            fill: none;
+            stroke: #999;
+            /* stroke-width: 1.5px; */
+            stroke-width: 1px;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 12px;
+            max-width: 600px;
+            max-height: 500px;
+            overflow: auto;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .tooltip table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        .tooltip th, .tooltip td {
+            border: 1px solid #ddd;
+            padding: 4px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        .tooltip th {
+            background-color: #f2f2f2;
+            white-space: nowrap;
+        }
+        
+        .tooltip pre {
+            white-space: pre;
+            word-wrap: normal;
+            overflow-x: auto;
+            max-width: 560px;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+        }
+
+        .tooltip .search-highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        .tooltip .clickable-value {
+            cursor: default;
+        }
+        .tooltip .clickable-value:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #007bff;
+        }
+
+        .tooltip .option-button {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .tooltip .option-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .legend {
+            position: absolute;
+            top: 120px;
+            right: 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: move;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .legend-item:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 50%;
+            border: 1px solid #333;
+        }
+
+        /* Styles for search highlighting */
+        .node.search-match circle {
+            stroke: #FF0000;
+            stroke-width: 4px;
+        }
+        .node.search-path circle {
+            stroke: #FFA500;
+            stroke-width: 2px;
+        }
+        .node.non-match {
+            opacity: 0.0;
+            pointer-events: none;
+        }
+
+        /* Initial upload screen */
+        .upload-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .upload-screen button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .upload-screen button:hover {
+            background-color: #0056b3;
+        }
+
+        /* for searching */
+
+        .node.non-match-gray {
+            opacity: 0.3;
+        }
+        .node.non-match {
+            opacity: 0.0;
+            pointer-events: none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Certificate Hierarchy Visualization</h1>
+            <div class="header-buttons">
+                <span id="current-file-display" class="current-file-display">No file loaded</span>
+                <button id="load-json-button" class="header-button">Load JSON Data</button>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <div class="search-box">
+                <select id="search-field" class="search-field">
+                    <option value="all">All Fields</option>
+                    <option value="name">Name</option>
+                    <option value="type">Type</option>
+                    <option value="children">Children Count</option>
+                    <option value="fingerprint">Fingerprint</option>
+                    <option value="filename">Filename</option>
+                    <option value="issuer.commonName">Issuer (CN)</option>
+                    <option value="subject.commonName">Subject (CN)</option>
+                    <option value="serialNumber">Serial Number</option>
+                    <option value="publicKey.algorithm">Public Key Algorithm</option>
+                    <option value="publicKey.key_size">Public Key Size</option>
+                    <option value="extensions">Extensions</option>
+                    <option value="pem_data">PEM Data</option>
+                </select>
+                <input type="text" id="search-input" class="search-input" placeholder="Search (e.g., 'name:example*' or 'children:>5')">
+                <button id="search-button" class="search-button">Search</button>
+                <button id="reset-button" class="search-button" style="background-color: #f44336;">Reset</button>
+                <button id="expand-all-button" class="search-button" style="background-color: #673AB7;">Expand All</button>
+            </div>
+            <div id="search-status" class="search-status"></div>
+        </div>
+        
+        <div id="visualization" class="visualization"></div>
+        
+        <div id="tooltip" class="tooltip" style="display: none;"></div>
+        
+        <div class="legend">
+            <h3>Legend</h3>
+            <div class="legend-item" data-type="rootCA">         <div class="legend-color" style="background-color: #542788;"></div> <span>Root CA</span> </div>
+            <div class="legend-item" data-type="intermediateCA"> <div class="legend-color" style="background-color: #8073ac;"></div> <span>Intermediate CA</span> </div>
+            <div class="legend-item" data-type="certificate">    <div class="legend-color" style="background-color: #b2abd2;"></div> <span>Certificate</span> </div>
+            <div class="legend-item" data-type="publicKey">      <div class="legend-color" style="background-color: #d8daeb;"></div> <span>Public Key</span> </div>
+            <div class="legend-item" data-type="privateKey">     <div class="legend-color" style="background-color: #b35806;"></div> <span>Private Key</span> </div>
+            <div class="legend-item" data-type="keyPair">        <div class="legend-color" style="background-color: #c62828;"></div> <span>(non-cert) Key Pair</span> </div>
+            <div class="legend-item" data-type="spareKeys">      <div class="legend-color" style="background-color: #fdb863;"></div> <span>Spare Keys</span> </div>
+            <div class="legend-item" data-type="unknownFormat">  <div class="legend-color" style="background-color: #b2beb5;"></div> <span>Unknown Format</span> </div>
+        </div>
+
+        <div id="upload-screen" class="upload-screen">
+            <h2>Welcome to Certificate Hierarchy Visualizer</h2>
+            <p>Please upload your `results.json` file to begin, or provide a URL parameter (e.g., `?json=data.json`).</p>
+            <button id="upload-json-button-initial">Upload JSON Data</button>
+            <input type="file" id="json-upload-input" accept=".json" style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const config = {
+            // many copied from the wonderful color brewer
+            colors: {
+                rootCA:         "#542788",  // dark  purple
+                intermediateCA: "#8073ac",  //       purple
+                certificate:    "#b2abd2",  // light purple
+                publicKey:      "#d8daeb",  // whiteish
+                privateKey:     "#b35806",  // brick red
+                unknownFormat:  "#b2beb5",  // gray
+                group:          "#b0bec5",  // gray/blue
+                grayed_out:     "#607d8b",  // gray
+                keyPair:        "#c62828",  // cherry red
+                spareKeys:      "#fdb863",  // light orange
+                // spareKeys:      "#fdb863"   // yeller
+            },
+            margin: { top: 50, right: 120, bottom: 50, left: 120 },
+            nodeSize: 15,
+            duration: 750
+        };
+
+        // Initialize variables
+        let root;
+        let treeLayout;
+        let svg;
+        let allNodes = [];
+        let originalData;
+        let searchFields = {};
+        let i = 0;
+        let activeZoom;
+        let stickyTooltipNode = null;
+        let currentLoadedFileName = "No file loaded"; // Track current file name
+
+
+        // Process a Key Pair node
+        function processKeyPair(keyPair) {
+            // Determine the name for the key pair node
+            let keyPairName = "Key Pair";
+            
+            // Try to get a meaningful name from the private or public key
+            if (keyPair["Private Key"] && keyPair["Private Key"].filename) {
+                keyPairName = keyPair["Private Key"].filename.replace(/\.(pem|key|priv)$/, '');
+            } else if (keyPair["Public Key"] && keyPair["Public Key"].filename) {
+                keyPairName = keyPair["Public Key"].filename.replace(/\.(pem|pub)$/, '');
+            }
+            
+            const keyPairNode = {
+                name: keyPairName,
+                type: "keyPair",
+                data: keyPair,
+                children: []
+            };
+        
+            // Add private key as child if present
+            if (keyPair["Private Key"]) {
+                const privateKeyNode = {
+                    name: keyPair["Private Key"].filename || "Private Key",
+                    type: "privateKey",
+                    data: keyPair["Private Key"]
+                };
+                keyPairNode.children.push(privateKeyNode);
+            }
+        
+            // Add public key as child if present
+            if (keyPair["Public Key"]) {
+                const publicKeyNode = {
+                    name: keyPair["Public Key"].filename || "Public Key",
+                    type: "publicKey",
+                    data: keyPair["Public Key"]
+                };
+                keyPairNode.children.push(publicKeyNode);
+            }
+        
+            return keyPairNode;
+        }
+
+
+        // Helper to parse numeric search queries (e.g., ">5", "<=10")
+        function parseNumericSearch(query) {
+            console.log("Parsing numeric search:", query);
+            
+            const operators = {
+                '>': (a, b) => a > b,
+                '>=': (a, b) => a >= b,
+                '<': (a, b) => a < b,
+                '<=': (a, b) => a <= b,
+                '=': (a, b) => a === b,
+                '==': (a, b) => a === b,
+                '!=': (a, b) => a !== b,
+                '': (a, b) => a === b // Default for exact match
+            };
+            
+            // Sort operators by length (longest first) to avoid partial matches
+            const sortedOps = Object.keys(operators).sort((a, b) => b.length - a.length);
+            
+            for (const op of sortedOps) {
+                if (query.startsWith(op)) {
+                    const numStr = query.substring(op.length).trim();
+                    const num = parseFloat(numStr);
+                    if (!isNaN(num)) {
+                        console.log(`Found operator '${op}' and value ${num}`);
+                        return { operator: operators[op], value: num };
+                    }
+                }
+            }
+            
+            // If no operator, assume exact match
+            const num = parseFloat(query);
+            if (!isNaN(num)) {
+                console.log(`Found exact match value ${num}`);
+                return { operator: operators['='], value: num };
+            }
+            
+            console.log("Invalid numeric query");
+            return null; // Invalid numeric query
+        }
+
+
+        function searchInObject(obj, fieldToSearch, termToSearch) {
+            // If termToSearch is empty, return false
+            if (!termToSearch) return false;
+            
+            function searchRecursive(obj, prefix = '') {
+                if (!obj) return false;
+                
+                for (const [key, value] of Object.entries(obj)) {
+                    const fullKey = `${prefix}${key}`.toLowerCase();
+                    
+                    // Check if we should search this field
+                    const shouldSearchField = fieldToSearch === 'all' || 
+                                            fieldToSearch === fullKey || 
+                                            fullKey.includes(fieldToSearch) ||
+                                            key.toLowerCase() === fieldToSearch;
+                    
+                    if (shouldSearchField) {
+                        // Search in string values
+                        if (typeof value === 'string' && value.toLowerCase().includes(termToSearch)) {
+                            console.log(`Match found in string field '${fullKey}': '${value}'`);
+                            return true;
+                        } 
+                        // Search in number values
+                        else if (typeof value === 'number' && value.toString().includes(termToSearch)) {
+                            console.log(`Match found in number field '${fullKey}': ${value}`);
+                            return true;
+                        } 
+                        // Search in boolean values
+                        else if (typeof value === 'boolean' && value.toString() === termToSearch) {
+                            console.log(`Match found in boolean field '${fullKey}': ${value}`);
+                            return true;
+                        }
+                        // Search for null values
+                        else if (value === null && termToSearch === 'null') {
+                            console.log(`Match found in null field '${fullKey}'`);
+                            return true;
+                        }
+                    }
+                    
+                    // Recursively search in nested objects
+                    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                        if (searchRecursive(value, `${fullKey}.`)) {
+                            return true;
+                        }
+                    } 
+                    // Search in arrays
+                    else if (Array.isArray(value)) {
+                        // Search in array elements
+                        for (let i = 0; i < value.length; i++) {
+                            if (typeof value[i] === 'object' && value[i] !== null) {
+                                if (searchRecursive(value[i], `${fullKey}[${i}].`)) {
+                                    return true;
+                                }
+                            } else if (shouldSearchField && 
+                                      typeof value[i] === 'string' && 
+                                      value[i].toLowerCase().includes(termToSearch)) {
+                                console.log(`Match found in array string item '${fullKey}[${i}]': '${value[i]}'`);
+                                return true;
+                            } else if (shouldSearchField &&
+                                      typeof value[i] === 'number' &&
+                                      value[i].toString().includes(termToSearch)) {
+                                console.log(`Match found in array number item '${fullKey}[${i}]': ${value[i]}`);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            
+            return searchRecursive(obj);
+        }
+
+
+
+        // --- Data Loading and Processing ---
+        async function loadDataFromUrl(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                originalData = data;
+
+                processData(data);
+
+                d3.select("#upload-screen").style("display", "none");
+                currentLoadedFileName = url.split('/').pop(); // Extract filename from URL
+                updateCurrentFileDisplay();
+                updateUrlParameter(url.split('/').pop()); // Update URL in browser
+            } catch (e) {
+                console.error(`Error loading JSON from URL ${url}:`, e);
+                alert(`Error loading JSON from URL: ${url}. Please ensure it's a valid JSON file and accessible.`);
+                d3.select("#upload-screen").style("display", "flex"); // Show upload screen if URL load fails
+            }
+        }
+
+
+        // Modify the initVisualization function to expand all nodes by default
+        function initVisualization() {
+            console.log("initializing visualization");
+        
+            // Clear any existing visualization
+            d3.select("#visualization").selectAll("*").remove();
+        
+            // Calculate dimensions
+            const width = document.getElementById("visualization").clientWidth;
+            const height = document.getElementById("visualization").clientHeight;
+        
+            // Create the tree layout
+            treeLayout = d3.tree()
+                .nodeSize([config.nodeSize * 3, 250])
+                .separation((a, b) => (a.parent == b.parent ? 1 : 2));
+        
+            // Create the SVG container
+            svg = d3.select("#visualization")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", `translate(${config.margin.left},${config.margin.top})`);
+        
+            // Initialize the root node position
+            root.x0 = height / 2;
+            root.y0 = 0;
+        
+            // Make all nodes visible and expanded by default
+            root.descendants().forEach(d => {
+                d.visible = true;
+                // Ensure _children is null to indicate the node is expanded
+                d._children = null;
+            });
+        
+            // Update the visualization
+            update(root);
+        
+            // Update the expand/collapse button state
+            const expandAllButton = document.getElementById("expand-all-button");
+            if (expandAllButton) {
+                expandAllButton.textContent = "Collapse All";
+                expandAllButton.setAttribute("data-state", "expanded");
+            }
+        
+            // Add zoom behavior
+            activeZoom = d3.zoom()
+                .scaleExtent([0.1, 3])
+                .on("zoom", (event) => {
+                    if (!stickyTooltipNode) {
+                        svg.attr("transform", event.transform);
+                    }
+                });
+        
+            const svgElement = d3.select("#visualization svg");
+            svgElement.call(activeZoom);
+        
+            // Make legend draggable
+            const legend = d3.select(".legend");
+            let legendDragging = false;
+            let legendX = 0;
+            let legendY = 0;
+        
+            // Ensure legend is positioned absolutely for dragging
+            legend.style("position", "absolute");
+        
+            legend.call(d3.drag()
+                .on("start", (event) => {
+                    legendDragging = true;
+                    // Calculate offset from mouse to legend's top-left corner
+                    legendX = event.x - parseFloat(legend.style("left"));
+                    legendY = event.y - parseFloat(legend.style("top"));
+                })
+                .on("drag", (event) => {
+                    if (legendDragging) {
+                        legend.style("left", (event.x - legendX) + "px")
+                            .style("top", (event.y - legendY) + "px");
+                    }
+                })
+                .on("end", () => {
+                    legendDragging = false;
+                }));
+        }
+        
+
+        // Function to identify nodes with matching private keys
+        function identifyNodesWithPrivateKeys() {
+            console.log("Identifying nodes with private keys...");
+            
+            // Create a map of all private keys and their parent nodes
+            const privateKeyMap = new Map();
+            
+            // First pass: collect all private keys
+            allNodes.forEach(node => {
+                if (node.data.type === "privateKey" && node.parent) {
+                    // Store the parent node of this private key
+                    const parentNode = node.parent;
+                    privateKeyMap.set(parentNode.data.name, true);
+                    console.log(`Found private key for: ${parentNode.data.name}`);
+                }
+            });
+            
+            // Second pass: mark nodes that have private keys
+            allNodes.forEach(node => {
+                if (node.data.type === "rootCA" || 
+                    node.data.type === "intermediateCA" || 
+                    node.data.type === "certificate" || 
+                    node.data.type === "publicKey") {
+                    
+                    node.hasPrivateKey = privateKeyMap.has(node.data.name);
+                    
+                    if (node.hasPrivateKey) {
+                        console.log(`Marked node as having private key: ${node.data.name} (${node.data.type})`);
+                    }
+                }
+            });
+            
+            const nodesWithPrivateKeys = allNodes.filter(n => n.hasPrivateKey);
+            console.log(`Total nodes with private keys: ${nodesWithPrivateKeys.length}`);
+            if (nodesWithPrivateKeys.length > 0) {
+                console.log("Nodes with private keys:", nodesWithPrivateKeys.map(n => n.data.name));
+            }
+        }
+        // You may also want to modify the processData function to ensure children are not collapsed
+        function processData(data) {
+            console.log("processing data...");
+            console.log(data);
+        
+            // Clear previous visualization if any
+            d3.select("#visualization").selectAll("*").remove();
+            d3.select("#tooltip").style("display", "none");
+            stickyTooltipNode = null;
+            allNodes = [];
+            searchFields = {};
+            i = 0;
+        
+            // Create the conceptual root node for the D3 tree
+            const hierarchyData = {
+                name: "Certificate Hierarchy",
+                children: []
+            };
+        
+            console.log("CAs")
+            // Process Certificate Authorities (directly as children of the root)
+            if (data["Certificate Authorities"] && data["Certificate Authorities"].length > 0) {
+                data["Certificate Authorities"].forEach(ca => {
+                    const caNode = processCA(ca);
+                    hierarchyData.children.push(caNode);
+                });
+            }
+        
+            console.log("certz")
+            // Process unassociated Certificates (grouped)
+            if (data["Certificates"] && data["Certificates"].length > 0) {
+                const certGroup = {
+                    name: "Unassociated Certificates",
+                    type: "group",
+                    data: null,
+                    children: []
+                };
+        
+                data["Certificates"].forEach(certObj => {
+                    for (const [name, cert] of Object.entries(certObj)) {
+                        const certNode = processCertificate(cert);
+                        certGroup.children.push(certNode);
+                    }
+                });
+                if (certGroup.children.length > 0) {
+                    hierarchyData.children.push(certGroup);
+                }
+            }
+        
+            console.log("spare")
+            // valid but not maching/spare
+            if (data["Spare Keys"] && data["Spare Keys"].length > 0) {
+                const spareKeyGroup = {
+                    name: "Spare Keys",
+                    type: "group",
+                    data: null,
+                    children: []
+                };
+        
+                data["Spare Keys"].forEach(spareKeyObj => {
+                    const spareKeyNode = {
+                      name: spareKeyObj.filename,
+                      type: "spareKeys",
+                      children: [],
+                      data: spareKeyObj
+                      };
+                      spareKeyGroup.children.push(spareKeyNode);
+                });
+                if (spareKeyGroup.children.length > 0) {
+                    hierarchyData.children.push(spareKeyGroup);
+                }
+            }
+
+            console.log("key pairs")
+            if (data["Key Pairs"] && data["Key Pairs"].length > 0) {
+                const keyPairsGroup = {
+                    name: "Key Pairs",
+                    type: "group",
+                    data: null,
+                    children: []
+                };
+
+                data["Key Pairs"].forEach(keyPair => {
+                    const keyPairNode = processKeyPair(keyPair);
+                    keyPairsGroup.children.push(keyPairNode);
+                });
+                if (keyPairsGroup.children.length > 0) {
+                    hierarchyData.children.push(keyPairsGroup);
+                }
+
+            }
+
+            console.log("unknown")
+            // Process Unknown Formats (grouped)
+            if (data["Unknown Formats"] && data["Unknown Formats"].length > 0) {
+                const unknownGroup = {
+                    name: "Unknown Formats",
+                    type: "group",
+                    data: null,
+                    children: []
+                };
+        
+                data["Unknown Formats"].forEach(format => {
+                    const formatNode = {
+                        name: format.filename || "Unknown Format",
+                        type: "unknownFormat",
+                        data: format
+                    };
+                    unknownGroup.children.push(formatNode);
+                });
+                if (unknownGroup.children.length > 0) {
+                    hierarchyData.children.push(unknownGroup);
+                }
+            }
+        
+            // Create the D3 hierarchy
+            root = d3.hierarchy(hierarchyData);
+            
+            // Collect all nodes for searching
+            allNodes = [];
+            root.descendants().forEach(node => {
+                console.log(node)
+                allNodes.push(node); 
+                extractSearchFields(node);
+            });
+            
+            // Identify nodes with matching private keys
+            identifyNodesWithPrivateKeys();
+            
+            // Initialize the visualization
+            initVisualization();
+            setupSearch(); // Re-setup search fields after data is loaded
+        }
+        
+        // Also update the setupExpandCollapseToggle function to reflect the initial expanded state
+        function setupExpandCollapseToggle() {
+            const expandAllButton = document.getElementById("expand-all-button");
+            expandAllButton.textContent = "Collapse All"; // Start with "Collapse All" since everything is expanded
+            expandAllButton.setAttribute("data-state", "expanded");
+            
+            expandAllButton.addEventListener("click", () => {
+                const currentState = expandAllButton.getAttribute("data-state");
+                
+                if (currentState === "expanded") {
+                    collapseAllNodes();
+                    expandAllButton.textContent = "Expand All";
+                    expandAllButton.setAttribute("data-state", "collapsed");
+                } else {
+                    expandAllNodes();
+                    expandAllButton.textContent = "Collapse All";
+                    expandAllButton.setAttribute("data-state", "expanded");
+                }
+            });
+        }
+        
+        // You might also want to add an auto-fit function to ensure the entire expanded tree is visible
+        function autoFitTree() {
+            // Wait a bit for the tree to be fully rendered
+            setTimeout(() => {
+                // Get all visible nodes
+                const visibleNodes = allNodes.filter(d => d.visible);
+                
+                if (visibleNodes.length === 0) return;
+                
+                // Calculate bounding box
+                let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+                visibleNodes.forEach(d => {
+                    minX = Math.min(minX, d.x);
+                    maxX = Math.max(maxX, d.x);
+                    minY = Math.min(minY, d.y);
+                    maxY = Math.max(maxY, d.y);
+                });
+                
+                // Add some padding
+                minX -= 50;
+                maxX += 50;
+                minY -= 50;
+                maxY += 50;
+                
+                // Get SVG dimensions
+                const svgWidth = document.getElementById("visualization").clientWidth;
+                const svgHeight = document.getElementById("visualization").clientHeight;
+                
+                // Calculate scale to fit
+                const scale = Math.min(
+                    0.9, // Maximum scale
+                    0.9 / Math.max((maxX - minX) / svgHeight, (maxY - minY) / svgWidth)
+                );
+                
+                // Calculate translation to center
+                const translateX = config.margin.left + svgWidth / 2 - scale * ((minY + maxY) / 2);
+                const translateY = config.margin.top + svgHeight / 2 - scale * ((minX + maxX) / 2);
+                
+                // Apply transform
+                svg.transition()
+                    .duration(config.duration)
+                    .call(
+                        activeZoom.transform,
+                        d3.zoomIdentity.translate(translateX, translateY).scale(scale)
+                    );
+            }, 100);
+        }
+        
+        function loadDataFromFile(file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    originalData = data;
+                    processData(data);
+                    d3.select("#upload-screen").style("display", "none");
+
+                    currentLoadedFileName = file.name;
+                    updateCurrentFileDisplay();
+                    updateUrlParameter(file.name); // Update URL in browser
+
+                } catch (e) {
+                    console.error("Error parsing JSON file:", e);
+                    alert("Error parsing JSON file. Please ensure it's a valid JSON format.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Process a Certificate Authority node
+        function processCA(ca) {
+            const caNode = {
+                name: ca.Name || "Unknown CA",
+                type: ca["Self Signed"] ? "rootCA" : "intermediateCA",
+                data: ca,
+                children: []
+            };
+
+            // Process Private Keys for CAs
+            if (ca["Private Key"] && ca["Private Key"] !== "unknown" && Array.isArray(ca["Private Key"])) {
+                ca["Private Key"].forEach(key => {
+                    const keyNode = {
+                        name: key.filename || "Unknown Key",
+                        type: "privateKey",
+                        data: key
+                    };
+                    caNode.children.push(keyNode);
+                });
+            }
+
+            // Process Subordinate CAs
+            if (ca["Subordinate CAs"]) {
+                for (const [name, subCA] of Object.entries(ca["Subordinate CAs"])) {
+                    const subCANode = processCA(subCA);
+                    caNode.children.push(subCANode);
+                }
+            }
+
+            // Process Certificates issued by this CA
+            if (ca["Certificates"]) {
+                for (const [name, cert] of Object.entries(ca["Certificates"])) {
+                    const certNode = processCertificate(cert);
+                    caNode.children.push(certNode);
+                }
+            }
+
+            return caNode;
+        }
+
+        // Process a Certificate node
+        function processCertificate(cert) {
+            const certNode = {
+                name: cert.Name || "Unknown Certificate",
+                type: "certificate",
+                data: cert,
+                children: []
+            };
+
+            // Process Private Keys
+            if (cert["Private Key"] && cert["Private Key"] !== "unknown" && Array.isArray(cert["Private Key"])) {
+                cert["Private Key"].forEach(key => {
+                    const keyNode = {
+                        name: key.filename || "Unknown Key",
+                        type: "privateKey",
+                        data: key
+                    };
+                    certNode.children.push(keyNode);
+                });
+            }
+
+            return certNode;
+        }
+
+        // Extract searchable fields from a node
+        function extractSearchFields(node) {
+            // Add node's type to searchable fields
+            if (node.data.type) {
+                const fieldName = 'type';
+                if (!searchFields[fieldName]) {
+                    searchFields[fieldName] = [];
+                }
+                searchFields[fieldName].push(node);
+            }
+
+            // Add node's name to searchable fields
+            if (node.data.name) {
+                const fieldName = 'name';
+                if (!searchFields[fieldName]) {
+                    searchFields[fieldName] = [];
+                }
+                searchFields[fieldName].push(node);
+            }
+
+            // Add children count to searchable fields
+            const childrenCount = node.children ? node.children.length : (node._children ? node._children.length : 0);
+            if (childrenCount !== undefined) {
+                const fieldName = 'children';
+                if (!searchFields[fieldName]) {
+                    searchFields[fieldName] = [];
+                }
+                searchFields[fieldName].push(node);
+            }
+
+            const data = node.data.data;
+            if (!data) return;
+
+            // Flatten the data object for searching
+            function flatten(obj, prefix = '') {
+                for (const [key, value] of Object.entries(obj)) {
+                    const fullKey = `${prefix}${key}`;
+                    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                        flatten(value, `${fullKey}.`);
+                    } else {
+                        const fieldName = fullKey.toLowerCase();
+                        if (!searchFields[fieldName]) {
+                            searchFields[fieldName] = [];
+                        }
+                        searchFields[fieldName].push(node);
+                    }
+                }
+            }
+            
+            flatten(data);
+        }
+
+
+        // Legend dots toggling visibility
+
+        function setupLegendToggle() {
+            document.querySelectorAll(".legend-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    const type = item.getAttribute("data-type");
+                    console.log(`Legend item clicked: ${type}`);
+            
+                    // Set search field to "type"
+                    document.getElementById("search-field").value = "type";
+            
+                    // Set search input to the type value
+                    document.getElementById("search-input").value = type;
+            
+                    // Perform search
+                    performSearch();
+                });
+            });
+        }
+        
+        function toggleNodesByType(type) {
+            // Check if any nodes of this type are currently visible
+            const visibleNodesOfType = allNodes.filter(node => 
+                node.data.type === type && node.visible !== false
+            );
+            
+            const shouldHide = visibleNodesOfType.length > 0;
+            
+            // Toggle visibility of nodes with this type
+            allNodes.forEach(node => {
+                if (node.data.type === type) {
+                    if (shouldHide) {
+                        // Hide this node
+                        node.visible = false;
+                        
+                        // If this is a parent node with children, remember its children
+                        if (node.children) {
+                            node._children = node.children;
+                            node.children = null;
+                        }
+                    } else {
+                        // Show this node
+                        node.visible = true;
+                        
+                        // Make sure all ancestors are visible too
+                        let ancestor = node.parent;
+                        while (ancestor) {
+                            ancestor.visible = true;
+                            
+                            // If ancestor has hidden children, restore them
+                            if (ancestor._children && ancestor._children.includes(node)) {
+                                ancestor.children = ancestor._children;
+                                ancestor._children = null;
+                            }
+                            
+                            ancestor = ancestor.parent;
+                        }
+                    }
+                }
+            });
+            
+            // Update the visualization
+            update(root);
+        }
+
+
+        // expand/collapse
+        function expandAllNodes() {
+            console.log("Expanding all nodes");
+            root.descendants().forEach(d => {
+                if (d._children) {
+                    d.children = d._children;
+                    d._children = null;
+                }
+                d.visible = true;
+            });
+            update(root);
+        }
+
+        function collapseAllNodes() {
+            // Keep root visible but collapse all its children
+            if (root.children) {
+                root.children.forEach(child => {
+                    collapse(child);
+                });
+            }
+            update(root);
+        }
+
+        // Collapse a node
+        function collapse(d) {
+            if (d.children) {
+                d._children = d.children;
+                d._children.forEach(collapse);
+                d.children = null;
+            }
+        }
+
+        // Expand a node (and its children if expandAll is true)
+        function expand(d, expandAll = false) {
+            if (d._children) { // If node has collapsed children
+                d.children = d._children; // Expand it
+                d._children = null;
+            }
+            // If expandAll is true, and the node now has children (either just expanded or already expanded)
+            if (expandAll && d.children) {
+                d.children.forEach(child => expand(child, true)); // Recursively expand all its children
+            }
+        }
+
+        // Expand a subtree from a given node
+        function expandSubtree(node) {
+            node.descendants().forEach(d => expand(d, false));
+            update(node);
+        }
+
+        // Focus on a subtree (expands and zooms)
+        function focusOnSubtree(node) {
+            // Expand the entire subtree
+            expand(node, true); // Ensure all descendants are expanded
+            update(node); // Update to render expanded nodes
+
+            // Calculate bounding box of the expanded subtree
+            let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+            node.descendants().forEach(d => {
+                if (d.visible) { // Only consider visible nodes for bounding box
+                    minX = Math.min(minX, d.x);
+                    maxX = Math.max(maxX, d.x);
+                    minY = Math.min(minY, d.y);
+                    maxY = Math.max(maxY, d.y);
+                }
+            });
+
+            const svgWidth = document.getElementById("visualization").clientWidth;
+            const svgHeight = document.getElementById("visualization").clientHeight;
+
+            const scale = Math.min(
+                3, // Max zoom level
+                0.9 / Math.max((maxX - minX) / svgHeight, (maxY - minY) / svgWidth)
+            );
+            const translateX = config.margin.left + svgWidth / 2 - scale * ((minY + maxY) / 2); // Include margin in translation
+            const translateY = config.margin.top + svgHeight / 2 - scale * ((minX + maxX) / 2); // Include margin in translation
+
+            svg.transition()
+                .duration(config.duration)
+                .call(
+                    activeZoom.transform,
+                    d3.zoomIdentity.translate(translateX, translateY).scale(scale)
+                );
+        }
+
+
+        function update(source) {
+
+            // Compute the new tree layout
+            treeLayout(root);
+        
+            const nodes = root.descendants();
+            const links = root.links();
+        
+            // Normalize for fixed-depth
+            nodes.forEach(d => {
+                d.y = d.depth * 250;
+            });
+        
+            // Update the nodes
+            const node = svg.selectAll("g.node")
+                .data(nodes.filter(d => d.visible), d => d.id || (d.id = ++i));
+
+        
+            // Enter new nodes
+            const nodeEnter = node.enter().append("g")
+                .attr("class", "node")
+                .attr("transform", d => `translate(${source.y0},${source.x0})`)
+                .on("click", (event, d) => {
+                    event.stopPropagation();
+                    if (stickyTooltipNode === d) {
+                        hideTooltip();
+                        stickyTooltipNode = null;
+                        d3.select("#visualization svg").call(activeZoom);
+                    } else {
+                        if (stickyTooltipNode) {
+                            hideTooltip();
+                        }
+                        showTooltip(event, d, true);
+                        stickyTooltipNode = d;
+                        d3.select("#visualization svg").on(".zoom", null);
+                    }
+                })
+                .on("dblclick", (event, d) => {
+                    event.stopPropagation();
+                    console.log("Double-click on node:", d.data.name);
+                    console.log("Node has children:", !!d.children);
+                    console.log("Node has _children:", !!d._children);
+                    
+                    if (d.children) {
+                        d._children = d.children;
+                        d.children = null;
+                    } else if (d._children) {
+                        d.children = d._children;
+                        d._children = null;
+                    }
+                    update(d);
+                })
+                .on("mouseover", (event, d) => {
+                    if (!stickyTooltipNode && (d.data.data || d.data.type === "group")) {
+                        showTooltip(event, d, false);
+                    }
+                })
+                .on("mouseout", () => {
+                    if (!stickyTooltipNode) {
+                        hideTooltip();
+                    }
+                });
+        
+            // Add circles to nodes
+            nodeEnter.append("circle")
+                .attr("r", 1e-6)
+                .style("fill", d => getNodeColor(d))
+                .style("stroke", d => d.data.type === "inferred" ? "#666" : "#000");
+        
+            // Add text labels to nodes
+            nodeEnter.append("text")
+                .attr("dy", ".35em")
+                .attr("x", d => d.children || d._children ? -13 : 13)
+                .attr("text-anchor", d => d.children || d._children ? "end" : "start")
+                .text(d => d.data.name)
+                .style("fill-opacity", 1e-6);
+        
+            // Add child count inside the circle
+            nodeEnter.append("text")
+                .attr("class", "child-count")
+                .attr("dy", "0.1em")
+                .attr("x", 0)
+                .text(d => {
+                    const count = d.children ? d.children.length : (d._children ? d._children.length : 0);
+                    return count > 0 ? count : '';
+                })
+                .style("fill-opacity", 1e-6)
+                .style("fill", d => { // Conditional fill for child count
+                    const nodeColor = getNodeColor(d);
+                    const hex = nodeColor.replace('#', '');
+                    const r = parseInt(hex.substring(0, 2), 16);
+                    const g = parseInt(hex.substring(2, 4), 16);
+                    const b = parseInt(hex.substring(4, 6), 16);
+                    return (r * 0.299 + g * 0.587 + b * 0.114) > 186 ? 'black' : 'white'; // Use luminance for better contrast
+                });
+        
+            // Update existing nodes
+            const nodeUpdate = nodeEnter.merge(node);
+        
+            // Transition nodes to their new position
+            nodeUpdate.transition()
+                .duration(config.duration)
+                .attr("transform", d => `translate(${d.y},${d.x})`);
+        
+            // Update node attributes
+            nodeUpdate.select("circle")
+                .attr("r", config.nodeSize)
+                .style("fill", d => getNodeColor(d))
+                .style("stroke", d => d.data.type === "inferred" ? "#666" : "#000")
+                .style("stroke-dasharray", d => d.data.type === "inferred" ? "3,3" : "none");
+        
+            nodeUpdate.select("text")
+                .style("fill-opacity", 1);
+            
+            nodeUpdate.select(".child-count")
+                .text(d => {
+                    const count = d.children ? d.children.length : (d._children ? d._children.length : 0);
+                    return count > 0 ? count : '';
+                })
+                .style("fill-opacity", 1)
+                .style("fill", d => { // Conditional fill for child count
+                    const nodeColor = getNodeColor(d);
+                    const hex = nodeColor.replace('#', '');
+                    const r = parseInt(hex.substring(0, 2), 16);
+                    const g = parseInt(hex.substring(2, 4), 16);
+                    const b = parseInt(hex.substring(4, 6), 16);
+                    return (r * 0.299 + g * 0.587 + b * 0.114) > 186 ? 'black' : 'white'; // Use luminance for better contrast
+                });
+        
+            // Apply search highlighting classes based on current display mode
+            nodeUpdate.attr("class", d => {
+                let classes = "node";
+                if (d.searchMatch) classes += " search-match";
+                else if (d.searched) classes += " search-path";
+                
+                // Apply non-match class based on search display mode
+                if (d.searchActive && !d.searchMatch && !d.searched) {
+                    const displayMode = document.getElementById("search-display-mode").value;
+                    if (displayMode === "gray-out") {
+                        classes += " non-match-gray";
+                    } else if (displayMode === "hide") {
+                        classes += " non-match";
+                    }
+                }
+                return classes;
+            });
+        
+            // Remove exiting nodes
+            const nodeExit = node.exit().transition()
+                .duration(config.duration)
+                .attr("transform", d => `translate(${source.y},${source.x})`)
+                .remove();
+        
+            nodeExit.select("circle")
+                .attr("r", 1e-6);
+        
+            nodeExit.select("text")
+                .style("fill-opacity", 1e-6);
+            
+            nodeExit.select(".child-count")
+                .style("fill-opacity", 1e-6);
+        
+            // Update the links
+            // const link = svg.selectAll("path.link")
+            //     .data(links.filter(d => d.target.visible && d.source.visible), d => d.target.id);
+            const link = svg.selectAll("path.link")
+                .data(links.filter(d => {
+                // Only show links where both source and target are visible
+                // and neither has the non-match class applied
+                return d.target.visible === true && 
+                   d.source.visible === true && 
+                   (!d.target.searchActive || d.target.searchMatch || d.target.searched) &&
+                   (!d.source.searchActive || d.source.searchMatch || d.source.searched);
+                }), d => d.target.id);
+
+
+
+        
+            // Enter new links
+            const linkEnter = link.enter().insert("path", "g")
+                .attr("class", "link")
+                .attr("d", d => {
+                    const o = {x: source.x0, y: source.y0};
+                    return diagonal(o, o);
+                });
+        
+            // Update existing links
+            const linkUpdate = linkEnter.merge(link);
+        
+            // Transition links to their new position
+            linkUpdate.transition()
+                .duration(config.duration)
+                .attr("d", d => diagonal(d.source, d.target));
+        
+            // Remove exiting links
+            link.exit().transition()
+                .duration(config.duration)
+                .attr("d", d => {
+                    const o = {x: source.x, y: source.y};
+                    return diagonal(o, o);
+                })
+                .remove();
+        
+            // Store the old positions for transition
+            nodes.forEach(d => {
+                d.x0 = d.x;
+                d.y0 = d.y;
+            });
+        }
+
+        // Create diagonal path for links
+        function diagonal(s, d) {
+            return `M ${s.y} ${s.x}
+                    C ${(s.y + d.y) / 2} ${s.x},
+                      ${(s.y + d.y) / 2} ${d.x},
+                      ${d.y} ${d.x}`;
+        }
+
+        // Get node color based on type
+        function getNodeColor(d) {
+            return config.colors[d.data.type] || config.colors.unknownFormat;
+        }
+
+       function resetSearch() {
+            // Clear search input
+            document.getElementById("search-input").value = "";
+
+            // Clear search status
+            document.getElementById("search-status").textContent = "";
+
+            // Reset all nodes
+            allNodes.forEach(node => {
+                node.searchMatch = false;
+                node.searched = false;
+                node.searchActive = false;
+                node.visible = true; // Make all nodes visible again
+            });
+
+            // Update visualization
+            update(root);
+        }
+
+
+        // --- Search Functions ---
+        function setupSearch() {
+            // Populate search field dropdown
+            const searchFieldSelect = document.getElementById("search-field");
+            const allFieldNames = new Set();
+            allNodes.forEach(node => {
+                if (node.data.data) {
+                    function collectKeys(obj, prefix = '') {
+                        for (const [key, value] of Object.entries(obj)) {
+                            const fullKey = `${prefix}${key}`;
+                            allFieldNames.add(fullKey);
+                            if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                                collectKeys(value, `${fullKey}.`);
+                            }
+                        }
+                    }
+                    collectKeys(node.data.data);
+                }
+            });
+            
+
+
+        const sortedFieldNames = Array.from(allFieldNames).sort();
+        sortedFieldNames.forEach(fieldName => {
+            const option = document.createElement("option");
+            option.value = fieldName.toLowerCase();
+            option.textContent = fieldName;
+            searchFieldSelect.appendChild(option);
+        });
+
+        // Search button
+        document.getElementById("search-button").addEventListener("click", performSearch);
+        
+        // Reset button
+        document.getElementById("reset-button").addEventListener("click", resetSearch);
+        
+        // Expand All button
+        document.getElementById("expand-all-button").addEventListener("click", expandAllNodes);
+        
+        // Enter key in search input
+        document.getElementById("search-input").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                performSearch();
+            }
+        });
+
+        // Escape key to unstick tooltip
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && stickyTooltipNode) {
+                hideTooltip();
+                stickyTooltipNode = null;
+                d3.select("#visualization svg").call(activeZoom);
+            }
+        });
+
+
+
+        // Legend click handlers
+        document.querySelectorAll(".legend-item").forEach(item => {
+            item.addEventListener("click", () => {
+                const type = item.getAttribute("data-type");
+                document.getElementById("search-input").value = type; // Just set the type value
+                document.getElementById("search-field").value = "type"; // Set field to "type"
+                performSearch(); // Perform the search
+            });
+        });
+
+
+        }
+
+
+        // Fix the performSearch function
+        function performSearch() {
+            const searchInput = document.getElementById("search-input").value.trim();
+            const selectedField = document.getElementById("search-field").value;
+            
+            if (!searchInput) {
+                resetSearch();
+                return;
+            }
+            
+            console.log(`Performing search: term='${searchInput}', field='${selectedField}'`);
+            
+            let matchCount = 0;
+            
+            // Reset all nodes for new search
+            allNodes.forEach(node => {
+                node.searchMatch = false;
+                node.searched = false;
+                node.searchActive = true;
+                node.visible = false; // Start by hiding all nodes
+            });
+            
+            // Parse search term for field-specific searches
+            let fieldToSearch = selectedField;
+            let termToSearch = searchInput;
+            
+            // Always check for field:value syntax, not just in 'all' mode
+            if (searchInput.includes(':')) {
+                const parts = searchInput.split(':', 2);
+                fieldToSearch = parts[0].toLowerCase().trim();
+                termToSearch = parts[1].trim();
+                console.log(`Split search: field='${fieldToSearch}', term='${termToSearch}'`);
+            }
+            
+            // Convert search term to lowercase for case-insensitive search
+            const searchTermLower = termToSearch.toLowerCase();
+            
+            // Handle numeric searches for 'children'
+            let numericChildrenSearch = null;
+            if (fieldToSearch === 'children') {
+                numericChildrenSearch = parseNumericSearch(termToSearch);
+                if (!numericChildrenSearch) {
+                    document.getElementById("search-status").textContent = "Invalid numeric query for children count.";
+                    document.getElementById("search-status").style.color = "#f44336";
+                    return;
+                }
+            }
+            
+            // Rest of the function remains the same...
+        
+
+
+
+            // Perform the search
+            allNodes.forEach(node => {
+                let isMatch = false;
+                
+                // Handle 'children' search
+                if (fieldToSearch === 'children' && numericChildrenSearch) {
+                    const childrenCount = node.children ? node.children.length : (node._children ? node._children.length : 0);
+                    if (numericChildrenSearch.operator(childrenCount, numericChildrenSearch.value)) {
+                        isMatch = true;
+                    }
+                } 
+                // Handle 'type' search - EXACT match for type
+                else if (fieldToSearch === 'type') {
+                    if (node.data.type && node.data.type.toLowerCase() === searchTermLower) {
+                        isMatch = true;
+                    }
+                }
+                // Handle 'name' search
+                else if (fieldToSearch === 'name') {
+                    if (node.data.name && node.data.name.toLowerCase().includes(searchTermLower)) {
+                        isMatch = true;
+                    }
+                }
+                // Handle 'all' search
+                else if (fieldToSearch === 'all') {
+                    // Search in node name
+                    if (node.data.name && node.data.name.toLowerCase().includes(searchTermLower)) {
+                        isMatch = true;
+                    }
+                    // Search in node type
+                    else if (node.data.type && node.data.type.toLowerCase().includes(searchTermLower)) {
+                        isMatch = true;
+                    }
+                    // Search in data fields
+                    else if (node.data.data) {
+                        isMatch = searchInObject(node.data.data, 'all', searchTermLower);
+                    }
+                }
+                // Handle specific field search
+                else {
+                    // Search in data fields for specific field
+                    if (node.data.data) {
+                        isMatch = searchInObject(node.data.data, fieldToSearch, searchTermLower);
+                    }
+                }
+                
+                if (isMatch) {
+                    node.searchMatch = true;
+                    matchCount++;
+                    
+                    // Mark all ancestors as part of search path and make them visible
+                    let current = node;
+                    while (current) {
+                        current.searched = true;
+                        current.visible = true;
+                        // Expand collapsed nodes along the path
+                        if (current._children) {
+                            current.children = current._children;
+                            current._children = null;
+                        }
+                        current = current.parent;
+                    }
+                }
+            });
+            
+            // Ensure all children of visible nodes are also visible (to maintain tree structure)
+            allNodes.forEach(node => {
+                if (node.visible && node.children) {
+                    node.children.forEach(child => child.visible = true);
+                }
+            });
+        
+            // Update search status
+            const statusElement = document.getElementById("search-status");
+            if (matchCount > 0) {
+                statusElement.textContent = `Found ${matchCount} match${matchCount !== 1 ? 'es' : ''}`;
+                statusElement.style.color = "#4CAF50";
+            } else {
+                statusElement.textContent = "No matches found";
+                statusElement.style.color = "#f44336";
+            }
+            
+            // Update visualization
+            update(root);
+        }
+        
+        function showTooltip(event, d, isSticky = false) {
+            const tooltip = d3.select("#tooltip");
+            
+            if (!d.data.data && d.data.type !== "group") return;
+
+            let content = `<h3>${d.data.name}</h3>`;
+            
+            // Add children count to tooltip
+            const childrenCount = d.children ? d.children.length : (d._children ? d._children.length : 0);
+            content += `<p><strong>Children:</strong> ${childrenCount}</p>`;
+
+            if (d.data.type === "group") {
+                content += `<p><strong>Type:</strong> ${d.data.type}</p>`;
+            } else {
+                content += createTooltipTable(d.data.data, d);
+            }
+
+            // Add Focus on Subtree button if sticky and has children
+            if (isSticky && (d.children || d._children)) {
+                // content += `<button class="option-button" data-action="focus-subtree">Focus on Subtree</button>`;
+                content = `<button class="option-button" data-action="focus-subtree">Focus on Subtree</button><p>` + content;
+            }
+
+            tooltip.html(content)
+                .style("display", "block")
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 10) + "px");
+
+            if (isSticky) {
+                tooltip.style("pointer-events", "auto");
+            } else {
+                tooltip.style("pointer-events", "none");
+            }
+
+            tooltip.selectAll(".clickable-value")
+                .on("click", function() {
+                    const field = this.dataset.field;
+                    const value = this.dataset.value;
+                    
+                    document.getElementById("search-field").value = field;
+                    document.getElementById("search-input").value = value;
+                    performSearch();
+                });
+            
+            // Add event listener for the new button
+            tooltip.select(".option-button").on("click", function() {
+                if (stickyTooltipNode) {
+                    focusOnSubtree(stickyTooltipNode);
+                    hideTooltip();
+                    stickyTooltipNode = null;
+                    d3.select("#visualization svg").call(activeZoom);
+                }
+            });
+        }
+
+        function hideTooltip() {
+            d3.select("#tooltip").style("display", "none");
+        }
+
+        function createTooltipTable(data, node) {
+            let table = '<table>';
+            
+            function addRow(key, value, isClickable = false) {
+                const displayKey = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1');
+                let displayValue = value;
+                
+                if (typeof value === 'object' && value !== null) {
+                    displayValue = JSON.stringify(value, null, 2);
+                }
+                
+                // Apply search highlighting if
+                if (node.searchMatch && typeof displayValue === 'string') {
+                    displayValue = highlightSearchTerms(displayValue, key);
+                }
+                
+                const valueClass = isClickable ? 'clickable-value' : '';
+                table += `<tr><th>${displayKey}</th><td class="${valueClass}" data-field="${key}" data-value="${value}">${displayValue}</td></tr>`;
+            }
+            
+            // Add basic information
+            addRow('type', node.data.type, true);
+            
+            // Add all data fields
+            for (const [key, value] of Object.entries(data)) {
+                if (key === 'pem_data') {
+                    table += `<tr><th>PEM Data</th><td><pre>${value}</pre></td></tr>`;
+                } else if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                    // Handle nested objects
+                    for (const [subKey, subValue] of Object.entries(value)) {
+                        addRow(`${key}.${subKey}`, subValue, true);
+                    }
+                } else if (Array.isArray(value)) {
+                    // Special handling for arrays: show count and allow expanding in tooltip
+                    table += `<tr><th>${key.charAt(0).toUpperCase() + key.slice(1)}</th><td>[${value.length} items]</td></tr>`;
+                    value.forEach((item, index) => {
+                        if (typeof item === 'object' && item !== null) {
+                            for (const [subKey, subValue] of Object.entries(item)) {
+                                addRow(`${key}[${index}].${subKey}`, subValue, true);
+                            }
+                        } else {
+                            addRow(`${key}[${index}]`, item, true);
+                        }
+                    });
+                } else {
+                    addRow(key, value, true);
+                }
+            }
+            
+            table += '</table>';
+            return table;
+        }
+
+
+        function highlightSearchTerms(text, fieldName) {
+            const searchTerm = document.getElementById("search-input").value.toLowerCase();
+            const selectedField = document.getElementById("search-field").value;
+            
+            if (!searchTerm || text.includes('<pre>')) return text;
+            
+            // Parse search term for field-specific searches
+            let actualSearchTerm = searchTerm;
+            let actualFieldFilter = selectedField;
+            
+            if (searchTerm.includes(':') && selectedField === 'all') {
+                const parts = searchTerm.split(':', 2);
+                actualFieldFilter = parts[0].toLowerCase();
+                actualSearchTerm = parts[1];
+            }
+            
+            // Check if this field should be highlighted
+            const shouldHighlight = actualFieldFilter === 'all' || 
+                                  actualFieldFilter === fieldName.toLowerCase() ||
+                                  fieldName.toLowerCase().includes(actualFieldFilter);
+            
+            if (shouldHighlight && text.toLowerCase().includes(actualSearchTerm)) {
+                const regex = new RegExp(`(${escapeRegExp(actualSearchTerm)})`, 'gi');
+                return text.replace(regex, '<span class="search-highlight">$1</span>');
+            }
+            
+            return text;
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+
+
+
+        // --- Upload Functions ---
+        function setupUpload() {
+            const uploadButtonInitial = document.getElementById("upload-json-button-initial");
+            const loadJsonButton = document.getElementById("load-json-button");
+            const fileInput = document.getElementById("json-upload-input");
+            const currentFileDisplay = document.getElementById("current-file-display"); // Display current filename
+
+            uploadButtonInitial.addEventListener("click", () => fileInput.click());
+            loadJsonButton.addEventListener("click", () => fileInput.click());
+            
+            fileInput.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    loadDataFromFile(file);
+                }
+            });
+        }
+
+        function updateCurrentFileDisplay() {
+            const currentFileDisplay = document.getElementById("current-file-display");
+            currentFileDisplay.textContent = currentLoadedFileName;
+        }
+
+        function updateUrlParameter(filename) {
+            const url = new URL(window.location);
+            url.searchParams.set('json', filename); // Use 'json' parameter
+            window.history.pushState({}, '', url);
+        }
+
+
+        // Add search display mode dropdown to the search container
+        function addSearchDisplayModeDropdown() {
+            const searchBox = document.querySelector('.search-box');
+            
+            // Create the dropdown
+            const displayModeSelect = document.createElement('select');
+            displayModeSelect.id = 'search-display-mode';
+            displayModeSelect.className = 'search-field';
+            
+            // Add options
+            const options = [
+                { value: 'gray-out', text: 'Gray out non-matches' },
+                { value: 'hide', text: 'Hide non-matches' },
+                { value: 'highlight-only', text: 'Highlight matches only' }
+            ];
+            
+            options.forEach(opt => {
+                const option = document.createElement('option');
+                option.value = opt.value;
+                option.textContent = opt.text;
+                displayModeSelect.appendChild(option);
+            });
+            
+            // Add event listener to update display when changed
+            displayModeSelect.addEventListener('change', () => {
+                if (document.getElementById("search-input").value) {
+                    update(root); // Refresh display with new mode
+                }
+            });
+            
+            // Insert before the search button
+            searchBox.insertBefore(displayModeSelect, document.getElementById('search-button'));
+            
+            // Add CSS for the new display mode
+            const style = document.createElement('style');
+            style.textContent = `
+                .node.non-match-gray {
+                    opacity: 0.3;
+                }
+                .node.non-match {
+                    opacity: 0.0;
+                    pointer-events: none;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+
+        // Setup function for document ready
+        document.addEventListener("DOMContentLoaded", () => {
+            setupUpload();
+            setupSearch();
+            setupLegendToggle();
+            setupExpandCollapseToggle();
+            addSearchDisplayModeDropdown();
+        
+            // Check for JSON file in URL query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const jsonFileParam = urlParams.get('json');
+        
+            // Add event listener for when data is loaded
+            const originalLoadDataFromFile = loadDataFromFile;
+            loadDataFromFile = function(file) {
+                originalLoadDataFromFile(file);
+                // Auto-fit after data is loaded and processed
+                autoFitTree();
+            };
+    
+            const originalLoadDataFromUrl = loadDataFromUrl;
+            loadDataFromUrl = function(url) {
+                originalLoadDataFromUrl(url).then(() => {
+                    // Auto-fit after data is loaded and processed
+                    autoFitTree();
+                });
+            };
+        
+            // Handle window resize
+            window.addEventListener("resize", () => {
+                if (root) {
+                    initVisualization();
+                }
+            });
+        
+            if (jsonFileParam) {
+                loadDataFromUrl(jsonFileParam);
+            } else {
+                // If no URL param, show initial upload screen
+                d3.select("#upload-screen").style("display", "flex");
+                if (root) initVisualization();
+            }
+        });
+
+
+        // Make functions globally accessible
+        window.expand = expand;
+        window.focusOnSubtree = focusOnSubtree;
+        window.expandSubtree = expandSubtree;
+        window.expandAllNodes = expandAllNodes;
+        window.collapseAll = collapse; // Make collapseAll globally accessible
+        // window.initializeVisualization = initVisualization; // Make initializeVisualization globally accessible
+        window.initVisualization = initVisualization; // Make initializeVisualization globally accessible
+
+    </script>
+</body>
+</html>

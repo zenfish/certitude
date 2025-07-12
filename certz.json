@@ -1,0 +1,341 @@
+{
+  "Certificate Authorities": [
+    {
+      "Name": "example.com",
+      "filename": "root-ca.pem",
+      "Serial Number": "1feed8a70d3e6fa0f6aed6e69fd2c37f0b5c0b49",
+      "SHA256 Fingerprint": "3EA39CD0F877B3053CD8D51D1D3D979ABB892179F73F0E93FE4A3BEE410D27F2",
+      "UID": "3EA39CD0F877B3053CD8D51D1D3D979ABB892179F73F0E93FE4A3BEE410D27F2",
+      "Signature Algorithm": "sha256WithRSAEncryption",
+      "Issuer": {
+        "countryName": "OZ",
+        "stateOrProvinceName": "OZ",
+        "localityName": "Emerald City",
+        "organizationName": "The Wiz",
+        "commonName": "example.com"
+      },
+      "Validity": {
+        "Not Before": "Jul 12 16:27:41 2025 GMT",
+        "Not After": "Jul 12 16:27:41 2026 GMT"
+      },
+      "Subject": {
+        "countryName": "OZ",
+        "stateOrProvinceName": "OZ",
+        "localityName": "Emerald City",
+        "organizationName": "The Wiz",
+        "commonName": "example.com"
+      },
+      "Public Key": {
+        "algorithm": "RSA",
+        "key_size": 2048,
+        "modulus": "bf986b78349f3a9953cd08e1346f174ca3381d943df5d81bb15a7b662778eec72402016dc4dcbdc08a9ee98ffc8bade94c830da611c632a0893a485d9dc9c88f52d26f5b5181a3de9b2397edaf6696d73119b595eea2d51e3efa4145aa361122c7af55d6215a88d9b0660b20454bfe48e604a747a1271c32d8348488a184986735d06a06a5c1f7a905068f604aa122ee863c2b9daebb6f18a0f650b62f3470af413a0a3d9a3e4a84a1de4d004902bce4ad6e70f8d7d9cb25acae5a954085c0fd29169192242720377508a291ceff0d2d6eb76dc9ec47e08ee054bc741ab13461eebcb28c84f108246624d6397ba6fe8566d9ed0ef7dbdb3fb8290dacf3956db3",
+        "exponent": 65537
+      },
+      "Self Signed": true,
+      "Trust Status": "Self-signed root CA",
+      "pem_data": "-----BEGIN CERTIFICATE-----\nMIIDkzCCAnugAwIBAgIUH+7Ypw0+b6D2rtbmn9LDfwtcC0kwDQYJKoZIhvcNAQEL\nBQAwWTELMAkGA1UEBhMCT1oxCzAJBgNVBAgMAk9aMRUwEwYDVQQHDAxFbWVyYWxk\nIENpdHkxEDAOBgNVBAoMB1RoZSBXaXoxFDASBgNVBAMMC2V4YW1wbGUuY29tMB4X\nDTI1MDcxMjE2Mjc0MVoXDTI2MDcxMjE2Mjc0MVowWTELMAkGA1UEBhMCT1oxCzAJ\nBgNVBAgMAk9aMRUwEwYDVQQHDAxFbWVyYWxkIENpdHkxEDAOBgNVBAoMB1RoZSBX\naXoxFDASBgNVBAMMC2V4YW1wbGUuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A\nMIIBCgKCAQEAv5hreDSfOplTzQjhNG8XTKM4HZQ99dgbsVp7Zid47sckAgFtxNy9\nwIqe6Y/8i63pTIMNphHGMqCJOkhdncnIj1LSb1tRgaPemyOX7a9mltcxGbWV7qLV\nHj76QUWqNhEix69V1iFaiNmwZgsgRUv+SOYEp0ehJxwy2DSEiKGEmGc10GoGpcH3\nqQUGj2BKoSLuhjwrna67bxig9lC2LzRwr0E6Cj2aPkqEod5NAEkCvOStbnD419nL\nJayuWpVAhcD9KRaRkiQnIDd1CKKRzv8NLW63bcnsR+CO4FS8dBqxNGHuvLKMhPEI\nJGYk1jl7pv6FZtntDvfb2z+4KQ2s85VtswIDAQABo1MwUTAdBgNVHQ4EFgQUbZm9\nUp7u4U+1ohOif4zsOE/Yb14wHwYDVR0jBBgwFoAUbZm9Up7u4U+1ohOif4zsOE/Y\nb14wDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAR85hKz+JrvUU\nuGJmmHUeipiqhWVE0JY3t5Wtb1TzIXZoD4DT2/vvQI12sVpj0XLjYhG5d8yJXUBY\n8zmI218tjDJ2HE+Y9inAb7SprWvit5+FdoJdcM4eNAy55JLFnXYXpPsAmoBQ7ItJ\nMWt3x/U1ihmRa44UJg4ri/ddeIAw6pFiQRNTrst38Q8zPvITxAHKIHzR2X2P04bw\nBTjJLpXJfzKaUycFyqiKI4fuOP0nM6ym+kJygXMoloOCd5Ln8fKfwQp3kCNktF0f\n57pKza2NjUrS8P65946f/P2iYbvKyPlGZFUKx+Ib8u94wufsGhjKYu4PLb9KVafp\n1fHlpKlrpw==\n-----END CERTIFICATE-----",
+      "X509v3 extensions": {
+        "subjectKeyIdentifier": "6d99bd529eeee14fb5a213a27f8cec384fd86f5e",
+        "authorityKeyIdentifier": "6d99bd529eeee14fb5a213a27f8cec384fd86f5e",
+        "basicConstraints": "CA:TRUE"
+      },
+      "Private Key": [
+        {
+          "filename": "root-ca.key",
+          "type": "PKCS8",
+          "encrypted": false,
+          "pem_data": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC/mGt4NJ86mVPN\nCOE0bxdMozgdlD312BuxWntmJ3juxyQCAW3E3L3Aip7pj/yLrelMgw2mEcYyoIk6\nSF2dyciPUtJvW1GBo96bI5ftr2aW1zEZtZXuotUePvpBRao2ESLHr1XWIVqI2bBm\nCyBFS/5I5gSnR6EnHDLYNISIoYSYZzXQagalwfepBQaPYEqhIu6GPCudrrtvGKD2\nULYvNHCvQToKPZo+SoSh3k0ASQK85K1ucPjX2cslrK5alUCFwP0pFpGSJCcgN3UI\nopHO/w0tbrdtyexH4I7gVLx0GrE0Ye68soyE8QgkZiTWOXum/oVm2e0O99vbP7gp\nDazzlW2zAgMBAAECggEADf6BNFr3mbfy8yy9B5o+TpaKCz21gYbtjY3efy7Oj6Dp\nBDfRf4m2AbcToLCn0WtRo96F+TAe1LooESM8VJbqo26juIbS1GVr5X37OLJRNnRK\nUvvnPce+nu0aVKPU07UltVsc/xJu7URP35bcHmOiE6CwDKiCi1DtH8tE4OvskOsH\nQ6tWLnzN6hEtMXz2lJc8aVKEdMyiOyI9JEQsLvCZoKc4eTXt6EzQezhfXlE22o3d\nTj+oitXDVp8lBRnZUlRco+/1pHG0ZaSIa8uYquo3wFey24jRmGYB8ykIkRK/g4zw\nAOPoEJ0rQP+RxhoRv3jUUUia1LquRZwa/Ukf7LMeOQKBgQDkPE3srJe/84XRpGow\nzv3Kv4Q2AY1U9o6oKpEnmngjQywSRNrFJB4jngXeupKzRz7CuQMKxPjay4qPKHST\n9t1qKxzhLhJk1BMVAbgZSjTBp0QgnPgEvPGbhTFNSvWa6oevbVscuPkLbRg6q9N6\nGoXwLafIxUsqiIBwpr7PsAvXyQKBgQDW5xHZpW8K8bOe/JVjMU4Gbi+rIYOGjbEh\nmdNfvoqyM2AMICNRjksbJDn7hVA1NpencU6DQbOxxM8c/7iGnQrdpKP5XprRp4Q3\ngdtNYKca7OLoAPXam1QUntqb6Kz5pJM5EiW6uueshc8ieI8axXDiVejuLMSbaqHw\nsuyZ8R0PmwKBgEZUeuK6kIx62zqtwndF4ZjviSsnMUkELROPAmnExM6A7Xy3sP5c\n0djB4icvMPODuchBQLm51sF9RTY2Di5mPPZxUJXnH43od/TaMcPBRR6Dj4/JLvgu\nzPjSg03BEovpR2R8ez4Plda6iGPT/Pe8YpePSgupGC+EHqgYCeZv5kZZAoGBAMQk\nkr47qGYsxOzPTOoEDlsAJrHjHNCqcolghPRWTPDowzlN++5sGVDkd6eBvftToIdL\ne4WBailOoFqvbBQxMcGqi58HIfdJFfwzoZ22Ic8JdvCaL8sfClbnxk+Wxon0FAt6\n7MTJ4rosRyoHL1YX7zglgTwh0DCp2rR+GkVHNGcRAoGBAJ0sm9s8lkJsuS+AVXGY\nR0VPWBIRHgtSsRs53ZP+LZgBoaqQKbMcVPf9W63Kwit/i4JLHbREkuBTnq/9l3a5\nJ8lxe+1cEq7haN6+ZKQ7Fsq024PnWtVhddJm2g4Wbq9KSlSBY2jKdStOlxUj0eBK\nV3Gr3NQ1YU3BPLabwv8YWjqH\n-----END PRIVATE KEY-----"
+        }
+      ],
+      "Subordinate CAs": {
+        "ca.oz.example.com": {
+          "Name": "ca.oz.example.com",
+          "filename": "sub-ca.pem",
+          "Serial Number": "2",
+          "SHA256 Fingerprint": "00C8FE9D60910D5ABDB1FC5CA4C8F6BC7ADBFB5E946B0928EA740D26B10822D9",
+          "UID": "00C8FE9D60910D5ABDB1FC5CA4C8F6BC7ADBFB5E946B0928EA740D26B10822D9",
+          "Signature Algorithm": "sha256WithRSAEncryption",
+          "Issuer": {
+            "countryName": "OZ",
+            "stateOrProvinceName": "OZ",
+            "localityName": "Emerald City",
+            "organizationName": "The Wiz",
+            "commonName": "example.com"
+          },
+          "Validity": {
+            "Not Before": "Jul 12 16:27:42 2025 GMT",
+            "Not After": "Jul 12 16:27:42 2026 GMT"
+          },
+          "Subject": {
+            "countryName": "OZ",
+            "stateOrProvinceName": "Winkie Country",
+            "organizationName": "Wicked Witch of the West",
+            "organizationalUnitName": "Flying Monkees",
+            "commonName": "ca.oz.example.com"
+          },
+          "Public Key": {
+            "algorithm": "RSA",
+            "key_size": 2048,
+            "modulus": "b211a38e62bc50f07115889e613e0825ea195fe4547c0cf0040e34b5435cc058df6787100a7a8d9d7b13b0d0342eb6526bdcff581c39f7ca8238db6c6944b64917a417a58f200177ecc0a9d5ca461f71d055b7651f23e658fbf8aa3784f01448b7eb0c79309925d0e476acd813b7702f580ff17f372f688d28be520cfe90a214973e739f7cb8e3d57043ee185754fad31380f4cbf1a8ba443859886d83f1b98b0c6582e2f893980a3d63aa201dc0e1897989ae7ab15e73a3ecf9d92d4757ee801a56a00ce3503b18ede74bdf0dca3ee1c3de26da028c5f6c306982f8047ae0a6d5f8167773de4728a24079f72ebdef638eb961dfbe6bd31abdb2231a929569c9",
+            "exponent": 65537
+          },
+          "Self Signed": false,
+          "pem_data": "-----BEGIN CERTIFICATE-----\nMIIDrzCCApegAwIBAgIBAjANBgkqhkiG9w0BAQsFADBZMQswCQYDVQQGEwJPWjEL\nMAkGA1UECAwCT1oxFTATBgNVBAcMDEVtZXJhbGQgQ2l0eTEQMA4GA1UECgwHVGhl\nIFdpejEUMBIGA1UEAwwLZXhhbXBsZS5jb20wHhcNMjUwNzEyMTYyNzQyWhcNMjYw\nNzEyMTYyNzQyWjB+MQswCQYDVQQGEwJPWjEXMBUGA1UECAwOV2lua2llIENvdW50\ncnkxITAfBgNVBAoMGFdpY2tlZCBXaXRjaCBvZiB0aGUgV2VzdDEXMBUGA1UECwwO\nRmx5aW5nIE1vbmtlZXMxGjAYBgNVBAMMEWNhLm96LmV4YW1wbGUuY29tMIIBIjAN\nBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAshGjjmK8UPBxFYieYT4IJeoZX+RU\nfAzwBA40tUNcwFjfZ4cQCnqNnXsTsNA0LrZSa9z/WBw598qCONtsaUS2SRekF6WP\nIAF37MCp1cpGH3HQVbdlHyPmWPv4qjeE8BRIt+sMeTCZJdDkdqzYE7dwL1gP8X83\nL2iNKL5SDP6QohSXPnOffLjj1XBD7hhXVPrTE4D0y/GoukQ4WYhtg/G5iwxlguL4\nk5gKPWOqIB3A4Yl5ia56sV5zo+z52S1HV+6AGlagDONQOxjt50vfDco+4cPeJtoC\njF9sMGmC+AR64KbV+BZ3c95HKKJAefcuve9jjrlh375r0xq9siMakpVpyQIDAQAB\no10wWzAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIBBjAdBgNVHQ4EFgQU67QsHrh4\nBIEpRE5UL7Oyxm1SUZowHwYDVR0jBBgwFoAUbZm9Up7u4U+1ohOif4zsOE/Yb14w\nDQYJKoZIhvcNAQELBQADggEBACYjsBr4X9CB+8T+Ad5sUWwY0TuTnoNnDrXYJXcA\nMAyHirRycTg58IkEKJtxTsu+dY2cyOGuJStClOXxGKW4isONCWk7g2DjDPOGXoof\n1pNlu+HAdMj/GKiQbJJIUTov/S3lxIJ52ds8xSJSFOJZkQv9bh6Sijuf5GbQFVXW\nB0bUF8TO5Zo9x+7raZlYNHPINODcQbZYRqanxUFuftr6GYIARZIIuwTFPAM5fAoq\nh5AkDW8EbPDq0LtofNRvPVJk8gPKZ+4eLKIhUZeJq7Y6veVJm7Y5xWbqSXTAy0nc\nfqtSy6Rap+SezalgBhgFejJqDeAn5cWTZTEJ5LNewj5Q0/g=\n-----END CERTIFICATE-----",
+          "X509v3 extensions": {
+            "basicConstraints": "CA:TRUE",
+            "keyUsage": "keyCertSign, cRLSign",
+            "subjectKeyIdentifier": "ebb42c1eb878048129444e542fb3b2c66d52519a",
+            "authorityKeyIdentifier": "6d99bd529eeee14fb5a213a27f8cec384fd86f5e"
+          },
+          "Private Key": [
+            {
+              "filename": "sub-ca.key",
+              "type": "PKCS8",
+              "encrypted": false,
+              "pem_data": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCyEaOOYrxQ8HEV\niJ5hPggl6hlf5FR8DPAEDjS1Q1zAWN9nhxAKeo2dexOw0DQutlJr3P9YHDn3yoI4\n22xpRLZJF6QXpY8gAXfswKnVykYfcdBVt2UfI+ZY+/iqN4TwFEi36wx5MJkl0OR2\nrNgTt3AvWA/xfzcvaI0ovlIM/pCiFJc+c598uOPVcEPuGFdU+tMTgPTL8ai6RDhZ\niG2D8bmLDGWC4viTmAo9Y6ogHcDhiXmJrnqxXnOj7PnZLUdX7oAaVqAM41A7GO3n\nS98Nyj7hw94m2gKMX2wwaYL4BHrgptX4Fndz3kcookB59y6972OOuWHfvmvTGr2y\nIxqSlWnJAgMBAAECggEAECXdmEVPqMLfLGnc2/pnPIH1zl57Q1scfm+n27q5u+cr\nTjz/KUYbFsmBG/8LhmNqBsZOIRhBMP18MOoEEylEIw1559uPhsJfVNjVZfHviT01\n3HoSuV/U7SOfdZcujuN2Azi1Yz2TG8ztVO5Ac4xGaAKzQm4MC/huGaBlujAxH0N6\nSN6IEmPAMXIO4vuMJDGgS8/SPp0boTN/hGre8SpZjVu9/iroepP39HtxC5AVfVWJ\nIzqfBgA6xfNMc1exiQyp3lSZVnFoGZfPZJaowIrtX1J7e9SOeCoRkRXAcDHa6g+g\n9MpuIMUzk0Oj/SA4mddWWHKcIkVyHJKYh7uHYXVwIQKBgQDV5WWr36cY6UEAG97X\nMw/Zwfq0B2T1xuBNafxjM2I3eSB0Pi4s45wmWtmUitA6gBcsI765EFH2UAPM2ASl\nHfgfzzV+Q6iJJEKCJBuv4ZU2aUtEORihlRwjurU3f1uRu8qLhAZD20tRcLIrz6F/\nQ2phLIMMWzjH+2sUvAk5qWReoQKBgQDVHti5aBAHReCgxRWN8vymts4Hlqo6Knur\nZ11q7MftS9QjoH4ViOKIo1jzYwoe/7PwZg9czo1PRHnj9Z0in1ozWFEw50/1PRpR\niL52YLESN2Faww+bLtaz3bNTGnEzBWy4cuT2kPZns6dAZuRMBWrhtbLopTfIGaAC\nMtQxy6UCKQKBgC1aXpx656tYiffD8RQgN5QslUPm7XlPme/QMTu3gXPRsxfyt0e9\nWzamvMvKQyykTEWHrsD+vOJFRQkCJLn+CMZ14RnMrselcJS3o0c/xaur19G3aYmZ\nXEYXKKWD056q+t9qNwncTbQO+Thg5hVd7gh8r6zHCtscbDARTsNzL10BAoGAdz6M\nKqkkFr2tYqcDWWo0nR85hhtx4Zu1mID8TwBvGMHNz6VUBr6Rabxj38Jxfki6KG8i\nd14GyOxaewcJRb79nC71NrSmE2R93lLxppCRYszjxwHPMJfzf64zUPNBlTeazlVS\n8PbJN9rYYPtxD2wUkne0w+D1phtYYQKJodb824kCgYASb9lSqrCYDa0bm6TGcLQd\nLsG10wCl9EdnjiSMvoAeJGZTMgYhjOpFAx7IfSsEjfL5ELX5i2q1De513fEKcAIs\njc/kYf3SBXdNEqOFf6UX4HBcRy93sk9yDFh3Z6zXVi7e5TQi17/Pv15uVsELvwiM\n+ai+hV0JFNy46osvlhf63A==\n-----END PRIVATE KEY-----"
+            }
+          ],
+          "Certificates": {
+            "client.oz.example.com": {
+              "Name": "client.oz.example.com",
+              "filename": "client.oz.example.com.pem",
+              "Serial Number": "4",
+              "SHA256 Fingerprint": "3D0A90D72FDB246BAB7102B0E7FD904F8DD2E96D4257F682223852465B51401E",
+              "UID": "3D0A90D72FDB246BAB7102B0E7FD904F8DD2E96D4257F682223852465B51401E",
+              "Signature Algorithm": "sha256WithRSAEncryption",
+              "Issuer": {
+                "countryName": "OZ",
+                "stateOrProvinceName": "Winkie Country",
+                "organizationName": "Wicked Witch of the West",
+                "organizationalUnitName": "Flying Monkees",
+                "commonName": "ca.oz.example.com"
+              },
+              "Validity": {
+                "Not Before": "Jul 12 16:27:42 2025 GMT",
+                "Not After": "Jul 12 16:27:42 2026 GMT"
+              },
+              "Subject": {
+                "countryName": "OZ",
+                "stateOrProvinceName": "Winkie Country",
+                "organizationalUnitName": "Herku",
+                "commonName": "client.oz.example.com"
+              },
+              "Public Key": {
+                "algorithm": "RSA",
+                "key_size": 2048,
+                "modulus": "9ef8f64d1358ea204d7acc5e4dd88cfea106a0c0a034a27de3a70ff71dca73553de24b18d38b472be756146923ee779805580ceeb3e3a59cbed3ed7d39fbe67af71e9de34d07642a08c8886fec4c250e5792d2fde2c96cde56e82cafd61c23f0910d52881a22434c3cd27b53298e13bc2138cf025d12929767fa2e519f828b954b00523b976c1c0cd91fcad27f0298dc628f23cfa5996aed38c2a6f57d55b74f1f30d72e3ea6f719e41f19a4abfef5c95b112a4e80f0879710629397e6c8c8981f05b55b3987400f0598e5530311545c3fe7216bfd768e8b9efcafbeaea2d53f6182f89060cb1578364421d9a8fc4cd88ac5e7b798eb50823c49067e33258495",
+                "exponent": 65537
+              },
+              "Self Signed": false,
+              "pem_data": "-----BEGIN CERTIFICATE-----\nMIIDpjCCAo6gAwIBAgIBBDANBgkqhkiG9w0BAQsFADB+MQswCQYDVQQGEwJPWjEX\nMBUGA1UECAwOV2lua2llIENvdW50cnkxITAfBgNVBAoMGFdpY2tlZCBXaXRjaCBv\nZiB0aGUgV2VzdDEXMBUGA1UECwwORmx5aW5nIE1vbmtlZXMxGjAYBgNVBAMMEWNh\nLm96LmV4YW1wbGUuY29tMB4XDTI1MDcxMjE2Mjc0MloXDTI2MDcxMjE2Mjc0Mlow\nVjELMAkGA1UEBhMCT1oxFzAVBgNVBAgMDldpbmtpZSBDb3VudHJ5MQ4wDAYDVQQL\nDAVIZXJrdTEeMBwGA1UEAwwVY2xpZW50Lm96LmV4YW1wbGUuY29tMIIBIjANBgkq\nhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnvj2TRNY6iBNesxeTdiM/qEGoMCgNKJ9\n46cP9x3Kc1U94ksY04tHK+dWFGkj7neYBVgM7rPjpZy+0+19OfvmevceneNNB2Qq\nCMiIb+xMJQ5XktL94sls3lboLK/WHCPwkQ1SiBoiQ0w80ntTKY4TvCE4zwJdEpKX\nZ/ouUZ+Ci5VLAFI7l2wcDNkfytJ/ApjcYo8jz6WZau04wqb1fVW3Tx8w1y4+pvcZ\n5B8ZpKv+9clbESpOgPCHlxBik5fmyMiYHwW1WzmHQA8FmOVTAxFUXD/nIWv9do6L\nnvyvvq6i1T9hgviQYMsVeDZEIdmo/EzYisXnt5jrUII8SQZ+MyWElQIDAQABo1cw\nVTATBgNVHSUEDDAKBggrBgEFBQcDAjAdBgNVHQ4EFgQUKnwVvpkk/DGITw7USv7r\npCPK6VcwHwYDVR0jBBgwFoAU67QsHrh4BIEpRE5UL7Oyxm1SUZowDQYJKoZIhvcN\nAQELBQADggEBAK4AF2AFsjeEA/0gxTt88UE/TH2ZGJSJ/T2Tg/Agty3SCdDInjRX\nhPlG5WPpEdsMOFFQwYjp4M/dlUl32rHhrV0rfW1CGdH8ne+1QxKzGaWz0e3D9yYi\nQtppaQYNDYvzplxYMSWJBOdjXP9I/YVbxm3KiUuSSiv+MnPiL8XVVZfFbtoXX/U8\n6UIHKSCdBUmR8PRbMb64052vFfFM09JnVA5mfuKzDIZj4pDvAd0D+sXI2pEKXIJ4\nSnoln5yBAx5+LQyUKYbd6WBil/JdDnjC6MhPJTnoJqgiELlBkisQfvSdu3n07eg1\nUkQgm21WHGQgYOtOpjsVr6XDFrsr82O8PNY=\n-----END CERTIFICATE-----",
+              "X509v3 extensions": {
+                "extendedKeyUsage": "clientAuth",
+                "subjectKeyIdentifier": "2a7c15be9924fc31884f0ed44afeeba423cae957",
+                "authorityKeyIdentifier": "ebb42c1eb878048129444e542fb3b2c66d52519a"
+              },
+              "Private Key": [
+                {
+                  "filename": "client.oz.example.com.key",
+                  "type": "PKCS8",
+                  "encrypted": false,
+                  "pem_data": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCe+PZNE1jqIE16\nzF5N2Iz+oQagwKA0on3jpw/3HcpzVT3iSxjTi0cr51YUaSPud5gFWAzus+OlnL7T\n7X05++Z69x6d400HZCoIyIhv7EwlDleS0v3iyWzeVugsr9YcI/CRDVKIGiJDTDzS\ne1MpjhO8ITjPAl0Skpdn+i5Rn4KLlUsAUjuXbBwM2R/K0n8CmNxijyPPpZlq7TjC\npvV9VbdPHzDXLj6m9xnkHxmkq/71yVsRKk6A8IeXEGKTl+bIyJgfBbVbOYdADwWY\n5VMDEVRcP+cha/12joue/K++rqLVP2GC+JBgyxV4NkQh2aj8TNiKxee3mOtQgjxJ\nBn4zJYSVAgMBAAECggEAEw60dCP0HkkWELkMOxfROzsxkLbW3ch3AAIIi27SVMYs\nv4KSLNX/B7fZXWQHTzCeFFHsZvdAvJtQUxae0wMsK6SRUosrsk2jLl9f3877h9uy\nyuKpVfUgrHzNo4HG0KPMVI88zB0Z62hpyC/Jles22XBAH6zgXHgfV3Mp91YAb9wa\n50tqzoZizdh72xRlk+c3uO9bAVMK3xe5yD0xgWH0lrEFe0UmcOg1tnHYWtF35Mhs\nnEurAooJww6vFo7LU8lr0RVunKZtv6Rx2fCEJYdNhS16sciBhyNRJrfUVrCYYvw3\nucD1ZY6mkrs9+qPfxBSdJKGswIjBHwoMraw+se9I5wKBgQDWSrW90ThRtDPMt45N\n2XU+u+7cEoJsVvkWfkkaAMkq1LR/E84DZtd6azNhEuWChYTv6fiyenrwprmfvGQR\nLUn5cXbS2k8oK1ePCaL7k/I4SoTdEko6988CP3CGHj8aV6W1030vrgA6M7hko3C6\ncrLmzvbuvOjAuRgYehHrvRnV8wKBgQC96epMvIjj7xAMZb7qltdptMw9GBhu4L50\nepaHtZblL0X7eeCXVRYzvjW16JHjSIUmr5mC7a1hdu5Oiep5ZALs/p7HlguUC3Co\nQTUTrFVHnnq0lNohAHCCg1eaG5MYvVDajybySQ3g6JOudT39DizcRMyyCTh6fs7J\nSA7fQcO1VwKBgFA4i6zRo/nCMhoTJSyzmZawmAy+ySBxtrHa+NbJMIXeNuvTqC3R\n1By6APP4NP8VqNx/hGCcRWXNpHPN/NAJWkYNWeQ5YaSyBQdBHkh77BNyoiZ4cF1+\n43n98cvjis/7u8dDsvukceVX81GJdev2gE6zb/GTurZbFFAlcowDsKZNAoGABQTd\nkFGbPIrg3bMCrKh34O9KRoMQgj2mSuXCfKur5TqumsrJyLYS9CMewEP5Nwx/mFoj\nsHYfkufVvHWgoLyn5yODhrrMa4kx3QB8KpzvVAk4LPWSHjUoxAo8knIQHSNDs8L8\nwIJ1v2/mF0I59SoevWOEFWBxAavAQ0mIOxY92dkCgYAHr5jrb3qMjxAAWtgDxnwe\nKeNPfnO/LmuQBkHXxbt5FF9d0niuzakJghRgzsySvVX2HfEBQlAWs/Snw+bLuATh\nIHyek80J0SzuLdZ3bao3rioxhy4/VEZKh4NmhkBhcfSdjfF8Jfe5LkjIgCZ4RdsT\ngA36YAK8jz8vLXeoc3t/9w==\n-----END PRIVATE KEY-----"
+                }
+              ]
+            },
+            "one.oz.example.com": {
+              "Name": "one.oz.example.com",
+              "filename": "one.oz.example.com.pem",
+              "Serial Number": "2",
+              "SHA256 Fingerprint": "1AB5B379D6BE55420F69B463667E648BBFBA4B2341399A35237C3D5BE018D5E4",
+              "UID": "1AB5B379D6BE55420F69B463667E648BBFBA4B2341399A35237C3D5BE018D5E4",
+              "Signature Algorithm": "sha256WithRSAEncryption",
+              "Issuer": {
+                "countryName": "OZ",
+                "stateOrProvinceName": "Winkie Country",
+                "organizationName": "Wicked Witch of the West",
+                "organizationalUnitName": "Flying Monkees",
+                "commonName": "ca.oz.example.com"
+              },
+              "Validity": {
+                "Not Before": "Jul 12 16:27:42 2025 GMT",
+                "Not After": "Jul 12 16:27:42 2026 GMT"
+              },
+              "Subject": {
+                "countryName": "OZ",
+                "stateOrProvinceName": "Winkie Country",
+                "organizationalUnitName": "Frogman",
+                "commonName": "one.oz.example.com"
+              },
+              "Public Key": {
+                "algorithm": "RSA",
+                "key_size": 2048,
+                "modulus": "d918b55fb2299abbd678a3f80044edcda9e870a3f1b6b15607af2438b08bcdbfbace9d0218afc4148dba75c081f43fdadccd2fad0b90faee440ccdd7776e048f598a89b06df02c4c02ed5bc4127597cd3e75a94bc2ed076b8f0f3704e3764c8ac210f0cff6a3feae49cf3ac9ba6cc1feed9787d1c30d69269b12a2c35d2209f5afe74e7d272dbcad2d63c50a8b7c525247d35633eb5f7fd458dc37a9919323e0bbbcf0adf426fdb5987904f0b4ca9f33105d6e37eb144af11d72dc18a36b14409f02675dd28802aaa2ac64b2b7612dffc160bbafb6206d6a20baaf86801a17af65b86a21c86800143df0f3621274112952194f8a7ec150d3940531908b4617b3",
+                "exponent": 65537
+              },
+              "Self Signed": false,
+              "pem_data": "-----BEGIN CERTIFICATE-----\nMIIDoDCCAoigAwIBAgIBAjANBgkqhkiG9w0BAQsFADB+MQswCQYDVQQGEwJPWjEX\nMBUGA1UECAwOV2lua2llIENvdW50cnkxITAfBgNVBAoMGFdpY2tlZCBXaXRjaCBv\nZiB0aGUgV2VzdDEXMBUGA1UECwwORmx5aW5nIE1vbmtlZXMxGjAYBgNVBAMMEWNh\nLm96LmV4YW1wbGUuY29tMB4XDTI1MDcxMjE2Mjc0MloXDTI2MDcxMjE2Mjc0Mlow\nVTELMAkGA1UEBhMCT1oxFzAVBgNVBAgMDldpbmtpZSBDb3VudHJ5MRAwDgYDVQQL\nDAdGcm9nbWFuMRswGQYDVQQDDBJvbmUub3ouZXhhbXBsZS5jb20wggEiMA0GCSqG\nSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDZGLVfsimau9Z4o/gARO3Nqehwo/G2sVYH\nryQ4sIvNv7rOnQIYr8QUjbp1wIH0P9rczS+tC5D67kQMzdd3bgSPWYqJsG3wLEwC\n7VvEEnWXzT51qUvC7Qdrjw83BON2TIrCEPDP9qP+rknPOsm6bMH+7ZeH0cMNaSab\nEqLDXSIJ9a/nTn0nLbytLWPFCot8UlJH01Yz619/1FjcN6mRkyPgu7zwrfQm/bWY\neQTwtMqfMxBdbjfrFErxHXLcGKNrFECfAmdd0ogCqqKsZLK3YS3/wWC7r7YgbWog\nuq+GgBoXr2W4aiHIaAAUPfDzYhJ0ESlSGU+KfsFQ05QFMZCLRhezAgMBAAGjUjBQ\nMA4GA1UdDwEB/wQEAwIFIDAdBgNVHQ4EFgQUjgdbb5aVjbJ7pmRP2rCteiO7mhow\nHwYDVR0jBBgwFoAU67QsHrh4BIEpRE5UL7Oyxm1SUZowDQYJKoZIhvcNAQELBQAD\nggEBADc+ujggpdQv7pkCKJO2XmnPArzlqwuAIo0MUG9tYKi2azN3BUqwIDlVvnTg\nNWwbGY5b1VuFIr4/ief6oP3LPODgRSxE+kGRPs5ybHT7feW/ofycn5eANQFARIoa\nyt7gFNjRo/grblge7b0nbo3wyqvTc0c9CCFN7HGPKVJCXOOOKFafDVbnH65J7mc3\nrXxXfDa1ixbeL4UKzJLHs3BBnjQuNsA0ndhz3bHJwx7+N/IS7ZpbyqYywNOy8tVC\nn/1sjapvU2ziV6T9J6KQf07SPhICoEcMgobt1xm9GtLoT9TIVkpMllDD56dAa6Kv\nwVhYLW+BeY8/qP58B3FGJuWp0nA=\n-----END CERTIFICATE-----",
+              "X509v3 extensions": {
+                "keyUsage": "keyEncipherment",
+                "subjectKeyIdentifier": "8e075b6f96958db27ba6644fdab0ad7a23bb9a1a",
+                "authorityKeyIdentifier": "ebb42c1eb878048129444e542fb3b2c66d52519a"
+              },
+              "Private Key": [
+                {
+                  "filename": "one.oz.example.com.key",
+                  "type": "PKCS8",
+                  "encrypted": false,
+                  "pem_data": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDZGLVfsimau9Z4\no/gARO3Nqehwo/G2sVYHryQ4sIvNv7rOnQIYr8QUjbp1wIH0P9rczS+tC5D67kQM\nzdd3bgSPWYqJsG3wLEwC7VvEEnWXzT51qUvC7Qdrjw83BON2TIrCEPDP9qP+rknP\nOsm6bMH+7ZeH0cMNaSabEqLDXSIJ9a/nTn0nLbytLWPFCot8UlJH01Yz619/1Fjc\nN6mRkyPgu7zwrfQm/bWYeQTwtMqfMxBdbjfrFErxHXLcGKNrFECfAmdd0ogCqqKs\nZLK3YS3/wWC7r7YgbWoguq+GgBoXr2W4aiHIaAAUPfDzYhJ0ESlSGU+KfsFQ05QF\nMZCLRhezAgMBAAECggEALi6s6sIWSqXZzoknCTugkOcrnMardU9NO049ONgJrYez\nYB+TYhgF8M9jkogUvRZWYzE9CqVSvqawED87rlrXmn0UVQ0Ungp2UwsWQeQhYt0V\nA+ezR7CvquhgdrZSAwjuXbFH4R2ZLmT6K5zYbBGVxTrayNhNE43CWivBNykZRB+8\nzRjcmJV38TEfOzIO9rTpicx2lPqqfTRe534HP9y0TWW0Na1GPWesQgitkrE5bc4U\nA78l2A48/MGezXKlpbBoFxsVzUSBVkU9mD7FClxj7ZyfP2e8eVnNKbLB6pq+nuWM\nktnCiVTsaXA9TcPXUVYSxf8zHwnUKEIHYCq0PWgUaQKBgQD4w6ykLwZqgQ9Droo0\nyJgALfaXabCfqotZhI7dSULtl13+hsRwDy6ukq3ZrrI00dRTRHWaVExy9Qy0Ee09\n17p4wyzfBK5Wgi9gJX30sT5p1wc28pTUOfFocPjNC1dJZYg1zVqcnheCHBF/YrF9\njPoemdfX+6HK9l8R8gDhNMzN6wKBgQDfaTtoutvLuDZ3VyQXjtSs7U5ITq6zF4xw\n0M6L9fobh9gi/wZRqpvd3lyIheixIAA9Wm4m4/KCDsP9Ot60TGNXp6BgAjU7Vs52\na2NAtQMFfhyUTjunBQHEfmQyiOHlNEQni/lJC4Mc48Uo2+irEBrCHQUnRej6GQII\nwC5o4QpDWQKBgQDvYo1N6ZrI/q0Lunhw1t++vHxhtGktHNbALBm2xHtNW64t8s4x\n78pCYBBAPCZtQcaK4oQxIRH4RewVlHKyYlilQVx6uGxz/w9L/Ig64h1niG7+521k\n1OWEVcJ2voUesj/jVlvt/wwsPopwBS873GAM9oqI4zMMtw1BnZpPHZpARQKBgQDV\nzSE7osdBeHM3Vj+GA/xn2Vo3PIVXgsu2Ez33F1lZC3G+XAyyDvHHLEulo3ECQTu5\ne1c7BJ5J9NN+/d2u8gOIGTUTbEmBFhvTnAWKITBZC01SaGQR/GqqnsJI0lJMRO6M\nYhoY21mIRjmiVoGdY3YYGimaYf8JiPE3aqN/Xw2xUQKBgA420nDIEtvcOBho5zhF\nTQ6Lbhfjrb3FIqRLmyzT6qxt/z0yuoAyMV/HDQ827Pg9uHS6HraQP7Hn4QWI1nDJ\neOstbPHJSx11hmaAKLMRu78ewK3pmFsPt7To0nMXIe2EOVUp1FXSRRhYdhm/7mVS\nejMsRO7KgiWEK6IKp0AEyggK\n-----END PRIVATE KEY-----"
+                }
+              ]
+            },
+            "www.oz.example.com": {
+              "Name": "www.oz.example.com",
+              "filename": "www.oz.example.com.pem",
+              "Serial Number": "3",
+              "SHA256 Fingerprint": "0F6E4832BF8180A48A5F1402D88399FB6104A5704169BC285CD871F910C4135E",
+              "UID": "0F6E4832BF8180A48A5F1402D88399FB6104A5704169BC285CD871F910C4135E",
+              "Signature Algorithm": "sha256WithRSAEncryption",
+              "Issuer": {
+                "countryName": "OZ",
+                "stateOrProvinceName": "Winkie Country",
+                "organizationName": "Wicked Witch of the West",
+                "organizationalUnitName": "Flying Monkees",
+                "commonName": "ca.oz.example.com"
+              },
+              "Validity": {
+                "Not Before": "Jul 12 16:27:42 2025 GMT",
+                "Not After": "Jul 12 16:27:42 2026 GMT"
+              },
+              "Subject": {
+                "countryName": "OZ",
+                "stateOrProvinceName": "Winkie Country",
+                "organizationalUnitName": "Engineering",
+                "commonName": "www.oz.example.com"
+              },
+              "Public Key": {
+                "algorithm": "RSA",
+                "key_size": 2048,
+                "modulus": "c1f6d8d2ed706e3071014529841c2a4c266e5d6982d4a223bb42ec55fefa3d25cad587119240104c7e6931a4842ec521df949c316ef3f23668ad42c02c742dbf591025c04a5e50d91ac837c370d3c5b32a2f447d02163f80796b1c997caa6ee911f700c7e591316b01e5f10cf113c1e358de8eabf01ad997e2c27e6a9b62021da4fad6e66de81398d63aa7f24c7b46c2d440f1ec4c0efc14325e3337e106019fd5b1c0192a8ae2143a7e1a83b7fca1c7ce3b809d3b98bc49b4b216e0aecb2ee3f3062d765cd3bf53c28ccb189814fa4b0640a84a590d9f33a4f1beac46acc5a8295be3e1cf51ecd1387cd579e9386519d49c0e7091ab094a2ff2dbac032ff889",
+                "exponent": 65537
+              },
+              "Self Signed": false,
+              "pem_data": "-----BEGIN CERTIFICATE-----\nMIIDqTCCApGgAwIBAgIBAzANBgkqhkiG9w0BAQsFADB+MQswCQYDVQQGEwJPWjEX\nMBUGA1UECAwOV2lua2llIENvdW50cnkxITAfBgNVBAoMGFdpY2tlZCBXaXRjaCBv\nZiB0aGUgV2VzdDEXMBUGA1UECwwORmx5aW5nIE1vbmtlZXMxGjAYBgNVBAMMEWNh\nLm96LmV4YW1wbGUuY29tMB4XDTI1MDcxMjE2Mjc0MloXDTI2MDcxMjE2Mjc0Mlow\nWTELMAkGA1UEBhMCT1oxFzAVBgNVBAgMDldpbmtpZSBDb3VudHJ5MRQwEgYDVQQL\nDAtFbmdpbmVlcmluZzEbMBkGA1UEAwwSd3d3Lm96LmV4YW1wbGUuY29tMIIBIjAN\nBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwfbY0u1wbjBxAUUphBwqTCZuXWmC\n1KIju0LsVf76PSXK1YcRkkAQTH5pMaSELsUh35ScMW7z8jZorULALHQtv1kQJcBK\nXlDZGsg3w3DTxbMqL0R9AhY/gHlrHJl8qm7pEfcAx+WRMWsB5fEM8RPB41jejqvw\nGtmX4sJ+aptiAh2k+tbmbegTmNY6p/JMe0bC1EDx7EwO/BQyXjM34QYBn9WxwBkq\niuIUOn4ag7f8ocfOO4CdO5i8SbSyFuCuyy7j8wYtdlzTv1PCjMsYmBT6SwZAqEpZ\nDZ8zpPG+rEasxagpW+Phz1Hs0Th81XnpOGUZ1JwOcJGrCUov8tusAy/4iQIDAQAB\no1cwVTATBgNVHSUEDDAKBggrBgEFBQcDATAdBgNVHQ4EFgQU1QHpJZyHEjKlvJXr\nCXtuhiHOoTQwHwYDVR0jBBgwFoAU67QsHrh4BIEpRE5UL7Oyxm1SUZowDQYJKoZI\nhvcNAQELBQADggEBAGw7WyNFpK4pcOAYdbYbDvATwah46QWjjTKd1l3XDlG9OSLc\nnxfHSYpUdz4syy2i/cuARxqcfGYTmgXPludutP7A5W+5a18d/+trnKZ8MFrziaKo\nrrc+0eqQBAgVtUUygpJh8d7/sQpPNx61ODVIJEXl05/S6l5OET6sLvDyaY72Em+d\nrGtSnt64yzqkqUucROsWapKqGCiI8e4zfq4rAE01phGpEOmoddatmOGhDTwh8H7M\nulM91TuJIjl2uPkfDbUoOVH8pFndf+UdeIXTLle4xMenpVs6enMJ4kcBmcVxbJtG\nKSIsTNluMQRx1w56r4QWkGFsE5VkfjPmwUegFJs=\n-----END CERTIFICATE-----",
+              "X509v3 extensions": {
+                "extendedKeyUsage": "serverAuth",
+                "subjectKeyIdentifier": "d501e9259c871232a5bc95eb097b6e8621cea134",
+                "authorityKeyIdentifier": "ebb42c1eb878048129444e542fb3b2c66d52519a"
+              },
+              "Private Key": [
+                {
+                  "filename": "www.oz.example.com.key",
+                  "type": "PKCS8",
+                  "encrypted": false,
+                  "pem_data": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDB9tjS7XBuMHEB\nRSmEHCpMJm5daYLUoiO7QuxV/vo9JcrVhxGSQBBMfmkxpIQuxSHflJwxbvPyNmit\nQsAsdC2/WRAlwEpeUNkayDfDcNPFsyovRH0CFj+AeWscmXyqbukR9wDH5ZExawHl\n8QzxE8HjWN6Oq/Aa2Zfiwn5qm2ICHaT61uZt6BOY1jqn8kx7RsLUQPHsTA78FDJe\nMzfhBgGf1bHAGSqK4hQ6fhqDt/yhx847gJ07mLxJtLIW4K7LLuPzBi12XNO/U8KM\nyxiYFPpLBkCoSlkNnzOk8b6sRqzFqClb4+HPUezROHzVeek4ZRnUnA5wkasJSi/y\n26wDL/iJAgMBAAECggEAAtfJCkkiI2Ot9uKkd5y3QHK1HhZuSlCxboQCey8DTEGk\nNS/EdiQkd49IIBxZZSy7je+SwAsB748mGE2nXUmeL5T/fRFvSfm9s8rQD1VA/y4o\nSjJi8gj/q/S7oex5id3fnJyL23OnXc0spUn8kmoX7JOExHlucnjYZRYSMn+Wk91h\nmmpgZUMV8jRZS24f4tCa6sh8vbYRoqc813M+uqOHhRb0pWy3CgSLpuEFcA7MVo5+\nGpE30G39nEKSKE3blpiuRnAQtFUqPOGtCH5KGt75JvxoDsos33+7KutChnUEUXh4\nQ4k0OqglG4+6LSn6L7E0ixfsok9fDg0Z2czyiYGnPQKBgQDnyVSPgmm63QxGWjk7\n+HmeFJMdiW4PxOt0G26B1O/BDlQmOZUOa2dWIqQSrCKeeJCbAYPe7uh8HpluhK2F\nISZIqvy4j3ACiG9gP4cNZEKIjOrmYbp3xvV60JsWYdlEnYL2+OJyWCoSa9BOQBdx\nDARmwMmswSZUOHrEdnu1sT7Y9QKBgQDWOglpufIvqYuXaVWMVSVYOhMShU9Bc0pv\nCIscCsUygKZZ64kkCbyGabVl7dKSS89bshjX23AXDydKfDPn+dRt5RPUrbuunEFQ\nu9dyCcWDLfVTvgkE+NnX0EHZJLL3Cgs8CkRG1GN8ly3Zm7jC5WNYH9RR3MXZTfei\nY4EFsvR0xQKBgHiMoHsnA6BZOPoaEKxdFbuezcjN4j03WJIBdl72BV/t+NwMlLZ0\nK8GDsLu5ZSPwZp0Hk7NNpAJx07DENo8H56Zhr6C5kTLwDKUNRUs0utnUGJOLfnSv\nOJsQhaiFaX+jQCr81KFNs0vzYNphwQ9dhah/WiSMLEgfO9KUINElhx9FAoGAEEJL\nYJjaRr/Jdm5qLcJwmSefNvKjN0Z2ycKOPEyc9t5Iwd5chD2w70qql9fa+XuDe2Qi\n+o8PDND7nG2cyuhtNQID5UpiSjhVxLjc+yy+rtwYGIj9ykDQ185YkRB1/MXoYGAv\nGmkYO+aFdlSZS0F5rsCLrsLgyUNfnhWLP1F7uDkCgYEAqlggZGC9VZY4ndGmXVcG\nSnrXJSKuW6Ekz6MKQ80DFPHKZgm8Rgx7sxS9/AjzKosLoTeMOmYEKKJqxzoojVAv\nayZGc77gwEKu0ciTf+9VmuQ73SEbqFnAhwKL2lCAWjDVNe0AthizEYB0TyvDgTHr\nbUiXu6VMs7o1NI45MAhycGU=\n-----END PRIVATE KEY-----"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "Certificates": {
+        "test.example.com": {
+          "Name": "test.example.com",
+          "filename": "test.example.com.pem",
+          "Serial Number": "3",
+          "SHA256 Fingerprint": "2E46AE080DA8664D0FDB95770DEE71362DCD6B23F0AAA2D138BC75CB48749ECA",
+          "UID": "2E46AE080DA8664D0FDB95770DEE71362DCD6B23F0AAA2D138BC75CB48749ECA",
+          "Signature Algorithm": "sha256WithRSAEncryption",
+          "Issuer": {
+            "countryName": "OZ",
+            "stateOrProvinceName": "OZ",
+            "localityName": "Emerald City",
+            "organizationName": "The Wiz",
+            "commonName": "example.com"
+          },
+          "Validity": {
+            "Not Before": "Jul 12 16:27:42 2025 GMT",
+            "Not After": "Jul 12 16:27:42 2026 GMT"
+          },
+          "Subject": {
+            "countryName": "OZ",
+            "stateOrProvinceName": "Winkie Country",
+            "organizationName": "Nellary",
+            "commonName": "test.example.com"
+          },
+          "Public Key": {
+            "algorithm": "RSA",
+            "key_size": 2048,
+            "modulus": "c06e5ed5a10ea0c857959375e2d55108775fe67c254e6b2866334e6645ad7d6dcedbb248ced02f49df96d4dc67db77649bd54f03acc3b97e277901d4715be3823e4459c9f608e44680c0e3cb741611db26d6aabe3fc7c66e58c01c8c382445de66f14fd6bd4eb9270e71474ed9a9f3a6d5f74336222f0da61c9fb3ef07c8b51c5c98e711984048ccf524fe5c1ba4d82c5e4830b11979f152c3e598ef8b74908c3efa0120d5fff820cd750dc2673e2ba8e54a16c2519087bb72d9ae402b3daffe28c7aa8f792d4bb97943f66dc836987bac341f31f4789029adff27a2b95e9a651636dfb2a81495c8bf58456b9aebc0caad3d42f9873b870634fb92d1ca9668d5",
+            "exponent": 65537
+          },
+          "Self Signed": false,
+          "pem_data": "-----BEGIN CERTIFICATE-----\nMIIDaTCCAlGgAwIBAgIBAzANBgkqhkiG9w0BAQsFADBZMQswCQYDVQQGEwJPWjEL\nMAkGA1UECAwCT1oxFTATBgNVBAcMDEVtZXJhbGQgQ2l0eTEQMA4GA1UECgwHVGhl\nIFdpejEUMBIGA1UEAwwLZXhhbXBsZS5jb20wHhcNMjUwNzEyMTYyNzQyWhcNMjYw\nNzEyMTYyNzQyWjBTMQswCQYDVQQGEwJPWjEXMBUGA1UECAwOV2lua2llIENvdW50\ncnkxEDAOBgNVBAoMB05lbGxhcnkxGTAXBgNVBAMMEHRlc3QuZXhhbXBsZS5jb20w\nggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDAbl7VoQ6gyFeVk3Xi1VEI\nd1/mfCVOayhmM05mRa19bc7bskjO0C9J35bU3Gfbd2Sb1U8DrMO5fid5AdRxW+OC\nPkRZyfYI5EaAwOPLdBYR2ybWqr4/x8ZuWMAcjDgkRd5m8U/WvU65Jw5xR07ZqfOm\n1fdDNiIvDaYcn7PvB8i1HFyY5xGYQEjM9ST+XBuk2CxeSDCxGXnxUsPlmO+LdJCM\nPvoBINX/+CDNdQ3CZz4rqOVKFsJRkIe7ctmuQCs9r/4ox6qPeS1LuXlD9m3INph7\nrDQfMfR4kCmt/yeiuV6aZRY237KoFJXIv1hFa5rrwMqtPUL5hzuHBjT7ktHKlmjV\nAgMBAAGjQjBAMB0GA1UdDgQWBBQOT4LygM1cz+MYuMFZR66gjKSRqjAfBgNVHSME\nGDAWgBRtmb1Snu7hT7WiE6J/jOw4T9hvXjANBgkqhkiG9w0BAQsFAAOCAQEAQ+PK\n9Xzuyr7wS51H+PMLWu0VIWMZfoFlF1sJucL5EG/Kwq+95jU3dSj6shqaSDxgG7PY\nWKNmuAzNy69LSTkTLGYKridaANbWJ8jyeD7a+J0xC9p16FcoOkZ0LwymzQ6pq39Q\nXCaAUnJ8MKfYXKkCSbKLiZUUZDHWcrSMMLknd4h4aEWZbb4hgshRsVffMcIvnaDH\npuvJdeusQVFCQacaP8f/y4VxQi+ociffb2d/mxOnPu10vyTvRiEy2lLFBHex3JQm\nsGgDUNQgazqrctK8zuxHFsTp2elYhA7nPq8bW3nzI35wvHJ7Thf30e/fAwYdW767\nh6HFD4lQn7hjVVAKRA==\n-----END CERTIFICATE-----",
+          "X509v3 extensions": {
+            "subjectKeyIdentifier": "0e4f82f280cd5ccfe318b8c15947aea08ca491aa",
+            "authorityKeyIdentifier": "6d99bd529eeee14fb5a213a27f8cec384fd86f5e"
+          },
+          "Private Key": [
+            {
+              "filename": "test.example.com.key",
+              "type": "PKCS8",
+              "encrypted": false,
+              "pem_data": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDAbl7VoQ6gyFeV\nk3Xi1VEId1/mfCVOayhmM05mRa19bc7bskjO0C9J35bU3Gfbd2Sb1U8DrMO5fid5\nAdRxW+OCPkRZyfYI5EaAwOPLdBYR2ybWqr4/x8ZuWMAcjDgkRd5m8U/WvU65Jw5x\nR07ZqfOm1fdDNiIvDaYcn7PvB8i1HFyY5xGYQEjM9ST+XBuk2CxeSDCxGXnxUsPl\nmO+LdJCMPvoBINX/+CDNdQ3CZz4rqOVKFsJRkIe7ctmuQCs9r/4ox6qPeS1LuXlD\n9m3INph7rDQfMfR4kCmt/yeiuV6aZRY237KoFJXIv1hFa5rrwMqtPUL5hzuHBjT7\nktHKlmjVAgMBAAECggEAGhq+5bcgD2KuMv3al6d9gysCiPddbjpuNBMQtyILq4DK\nd5ZDdz7Zs2lQAldWBXk4XkV9HxAASzkYbLt5UNl4zxHYXt/dbw5cnBnOrSp11f1H\nUwa9oVReEFkc0qKY+R67UXa58HUk6UwpkudsBG4gPgk3rlf5Ii31U1u84pfJO/w9\nJLQqoVuqJTdnYmOVsoCWCbBDxzwfp9DfSqGvpSBidI2gpIX7AsMsQzTs0b56pMDP\nLz3fDbkfHwABAnwgeyBbgDZFrGEb3KvfKyIkZuMp0zueJ9bdrjHAu+EhFLlWUccT\noS9jSS/Yl8vJD84xkFyX1e/Y58BUdiPLg5QZc5aDEQKBgQDr7P+A8xbiYgt+BFrU\ndlvfmekqB8ihen/5zU3A+V8gZdbJTYlNIr08+hTATKlHntEOVsVzQV+heKYnrNkQ\nqlplBc3Hh7oCcNw6wXDiNC5ap84uPycawtRMU8+7IpUkDl8Bo9Mfd1scSQqeQc/G\nE1D2Vbraaym6gSHwelj5UR2DXQKBgQDQzfW48Vgel6w65r3/HsFkTITDNaoVcFgB\nYXnsGnDJhDQfppK5k/TYjlXVvaJPFmH8AgQHkCZk0yxLMaxbMrfXojoPLsUbSIW9\nz7nV5ZAPdOOrgQTcTLigl2vZz0z8iLrQQFI6+bGiZdKtYo1Z9k6Q2JOlimYxov0V\nkqwd6GBb2QKBgEkqAkKXIG2sQiweZZyl5+/75xclus55Et8BEC/cJegCLQ3Ygc/u\nCgmy9GR+YbDYS7TKrAkGKQYGSGDddaN5cPcLSbmrGcBQB7wg6UT9MbLjf0lQRGxE\nJ1pUU4ORQfcgjc4QZBTKCvNGo4hYmHqw2tbJ11yNBy/ThBbzmkwXH7PxAoGBAIIs\nNImE5HPGCNh7q21WJii6T3ZHiW5uKF9L/q+D2Fa5NamZthU9uUIckkR7QanegV2T\ngCGa62SmBhImuJXua5BiEaIPfVBCCSbJTsibohEQxTLRb09MAToUzGbwhsVVFGnp\n/5nGushMhGgVbZvtIxPIAVwNiSJewzrkwqquiQwZAoGANAL5eSOxY2Pye4FSPQ+I\npU4AojSijBeANjCXXaH51WVpsd+GEdpCe6Yk/YUqo8iokHpa5EukV1Ke9EFMWKFL\nWfuw7rNZLJp5/ToF5ZvgUyMd11QCuDVgCZfC8Y/2UuMiERXLJ/YTfO20J1+3vnx5\nbwRMjenxEJbhPcNj1ZH4LhM=\n-----END PRIVATE KEY-----"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "Certificates": [],
+  "Unknown Formats": [],
+  "Key Pairs": [
+    {
+      "Private Key": {
+        "filename": "tinman-ed25519",
+        "type": "SSH-SSH",
+        "algorithm": "SSH",
+        "pem_data": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\nQyNTUxOQAAACCVi17aP57/Vi8unutJzpjC6WQfIJZJ0nhMtcW0ixJ/9wAAAJhw8xTlcPMU\n5QAAAAtzc2gtZWQyNTUxOQAAACCVi17aP57/Vi8unutJzpjC6WQfIJZJ0nhMtcW0ixJ/9w\nAAAEC21CR/63/nKxC/YVmw7uzvL5u7uDAsWn+Rzw2d0ZbZg5WLXto/nv9WLy6e60nOmMLp\nZB8glknSeEy1xbSLEn/3AAAAEnRpbm1hbkBleGFtcGxlLmNvbQECAw==\n-----END OPENSSH PRIVATE KEY-----"
+      },
+      "Public Key": {
+        "filename": "tinman-ed25519.pub",
+        "type": "SSH-ED25519",
+        "algorithm": "ED25519",
+        "pem_data": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWLXto/nv9WLy6e60nOmMLpZB8glknSeEy1xbSLEn/3 tinman@example.com"
+      }
+    },
+    {
+      "Private Key": {
+        "filename": "tinman-ed25519",
+        "type": "SSH-SSH",
+        "algorithm": "SSH",
+        "pem_data": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\nQyNTUxOQAAACCVi17aP57/Vi8unutJzpjC6WQfIJZJ0nhMtcW0ixJ/9wAAAJhw8xTlcPMU\n5QAAAAtzc2gtZWQyNTUxOQAAACCVi17aP57/Vi8unutJzpjC6WQfIJZJ0nhMtcW0ixJ/9w\nAAAEC21CR/63/nKxC/YVmw7uzvL5u7uDAsWn+Rzw2d0ZbZg5WLXto/nv9WLy6e60nOmMLp\nZB8glknSeEy1xbSLEn/3AAAAEnRpbm1hbkBleGFtcGxlLmNvbQECAw==\n-----END OPENSSH PRIVATE KEY-----"
+      },
+      "Public Key": {
+        "filename": "tinman-ed25519.pub",
+        "type": "SSH-ED25519",
+        "algorithm": "ED25519",
+        "pem_data": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWLXto/nv9WLy6e60nOmMLpZB8glknSeEy1xbSLEn/3 tinman@example.com"
+      }
+    }
+  ],
+  "Spare Keys": [
+    {
+      "filename": "rinktinktink.example.com.key",
+      "type": "PKCS8",
+      "is_private": true,
+      "algorithm": "RSA",
+      "key_size": 2048,
+      "encrypted": false,
+      "pem_data": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCTSla8Na0LfRwU\naqMouqAigkePv683jiPwHYtD3hLiyC5qvLx5vEATO6NAslxUMlWrcbzFxMs8gTMM\nRL3ircJ6ORCZxz0AokyD4mv70++RW4F5cUzhvQrosUKVPsa/Hp3tpjYiePHXGjCl\nE+jFnFcxw746xUCAv0ubrQqDKw0zLKVB2fneL/8ukyTNhMDK+ecpPG9DffJlD9JL\niidtn3bKc5wVgD359hr3Yw2tdas/dD3iGSz6Q5sntScITLL2lo7LNG+UE4zuVWCG\ndXCbqU/2S0c3G8TmTuASfnkuLCGx1ZSAxV4UqGq+8hkZHae1rwttTOm9iswOr3iw\neKRl6QkVAgMBAAECggEAAzBp3ltfKs+DqyF/9OLNktG1UPR6i75lIs7Q9CA70nM5\nJhB+GDiuPnxdFYqHGz+XwUWOK84OBHpbq5lVbzIJ8vGHXX0F4hyhgX2GjwZQupn7\nnLCKVJzuPomQAoFAdmToUHv30hlCS0EC6qAauySecrJlTQp2UhNSRMWjY6GsAH6f\nj2+A6NVJrT555g4to+WqDGjb2N/DtfF0D746ach0Wvq6GUGeB6jwYT6vp60J+Hn7\nJgbuI6xU/wbZVe3kEs6Gi0Q2OasCxUX2TwEZ6NX5peUg7I2Tq2fBPvdHQ9rSBUto\neF0OPBVPhgxwCGYS6H3fmK7AqIaK2opkUotAgfT54QKBgQDI+88o85S2F0D3qhv0\nLHigmZNG4DNgzfGI2H/CPMGpMia8iQ3hSi3FP2IU90xnf62TyK8Cy/mplDpKgsi+\nz0/JPPfRcMcDwfxIKZo5uP9U4J1LJDjo/5+Wyx1zhAyjfz4SI3B8I44i5A6B1uOo\nY/FySvqhvlW6d5TscQzUPxguWQKBgQC7m+fBKP4OuR677RerlzvT/QFU0QzDb5RF\n/HW11OG/Q6x5zRWUkDd1njGFARYGUTG26CYe4vkuIPLEkTN9re8Hn2tvbwcuA/wU\nZlgSonWTMVKM0asSkXSJMaKmNEz6en9gfStH2QKJo7Dhndrd13aAUVhah2EzT8xG\ncO4PE5rxHQKBgDA5Y1qTH5KVf8wtL+nlpcf7MYBnGUzX/WV1dSo5A8rCMtM4G3F8\nKAFVFQas09Ndqlt0YrHMGYqb+2SXfu1xttY1X80MP2RiblMuUEgbYICQKI24EkOt\n2jAHanimLZYpWM5nXH0c1uT+TZDP6+4ilPN0lDCtB8rnGH+nHIns3bN5AoGABOpH\nvxrI1S/qazgB97/llF87irJTaEdjFhZQKyxhobYvLZ2+4/6HRXCYkYh+wDmeWNFq\nNkLyDlBUq+u18qP88DEwCmJZSM5X61znD83r0KhpJkFT/w+KgxGm1j3mimVtMuT0\nnlREKcD9IFwXYNqFQ0VeUDjdxg9gJbRNuF1mIM0CgYBUiq1kShh+nJimmQ9oSyhT\nRdTbO3KlSzeKMQJyG9KeZqub+HnLjdddU2e5aZWWdk/6H5oPSf6pvydwN4nd71z4\n1apXNq3wc2tzKfrouVX+4Ts4BAEWBA4S4JyZD8tedTkrcuTaQYZZGwNzWBHrcrAi\nG3rvJOOOWw9yxIyIxeelPw==\n-----END PRIVATE KEY-----"
+    },
+    {
+      "filename": "toto.example.com.key",
+      "type": "PKCS8",
+      "is_private": true,
+      "algorithm": "RSA",
+      "key_size": 2048,
+      "encrypted": false,
+      "pem_data": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDak+2w6MGYpro0\nhvEitNyaVg6eLTq8YCz14+SZpgVJiCrD5CYoCtoSDpWF8aOX2Nx0RIVgXPFFx2zk\n36SBznPauQWGqKOufAEfLOGLMsR3lzfV3NZ+wZs1VKsFlwAA+HYddMvWiSut2seb\naNLql0lCPzAbJONFt0pChydAH1qbEXzgQJdozXhtoi1JtsctNIXCMwEXlo/7yC/e\nVwu+fe4tqX2ZwVy4rno6V5lbxlfwXWOW89wFpTLnv4TOEvwU2j8uihGRGtr6MLZ7\nxtMCg5idHvQGJgWRHU6CBIQ8Di+O0ZPunyukzI9ymMuqA5seTSKLx3Mg8itqg8b3\nzB/9SlYdAgMBAAECggEABCtS85Q5Tb5+juuhPz86iWJ9JkbIlX3kJQppP3wcrKEV\nItJYkEipA73GZb+WvaO+7ukfYKGPEEtxwK6h2ftkiKUhJNrLZlPH+Ch+dmZplH9R\nYRoXCyj/oDV8itz78s22xObC464FXuJtXVqEb7gFVhg7OnHvTCtdPcspGTI/6JKo\nLHtyaTXIDA5YJBlwN3MitHJq9SWRBkqqVH2T0/TavWN6aNNjxgb2nu4DwulzjEmL\nLYuh6TXAOv8/pur6IoPXfqbzsQx6q+m6o9rBoV/jxbIj63wK4UoX6Qc8BuS2iU+W\nB3N3jVrRAKPjIMloXJeaVisI2QFTRJjReQOD/0WQhQKBgQD3IaV1jwYlsOamBZPD\nyd/TXM46kgJ0ve33JFx38WIfsuDkwKslyScR4gftTZdnyc8fX5omdVPmIKBYiH8g\nO6yuCY8P8zTPw3eboVlR5LYGPC7PLNESClDipsopV0FhKNpc13Chmsu/m91oypYW\nRD+1+dznFs9mzf/RqEf7+sCrGwKBgQDia/cekMmiKj7Buo77VGddJfKMGtMBCsg2\n+jztHvZslrdPbLNqdOpIHudTRX7SPf40pl5HU2xWD4S1hiVTaAuuN7a10FX6X1Sp\nXDqiL7fBaDfRyDdXCFL5FmXKSaPjA5BbqUBKw8e2mowMjP5aHT7nGHLSalGn2Mi4\nlg9YuygfJwKBgAwTBsSBomlBBWPjLd8JA/iNtj3CWIBfrzq9+g6aKpMl6DsE9te3\nxkLnaj+75MPbZlVAFIYAgYLi4TKyKJPoln1CVk0PMutbv4JJFdYceJBBbIAOzoA1\nJNKOF56Bdt5KYrDajdQ3ffD0qpKuIzsfRoWbmaFoyeVZ9z/FGw9Cpxs1AoGBAKmN\nF7x3x8X7xIrl3PQvvEdwhzSLUb7SCCPDN6SJLxcZtaNwTtpFOrtPCQK+Y72kVpuu\niaL3wYSgkkwsa/8NRtHrPpLfs8KNaKR6QB37har7E/Gv8GDoBton/4l/o433uT4q\ne86A1SjUilNLsZxhkh0TncgbfZInMAept0xGukC5AoGBAINZ8v2IcmO8wV93fOD1\nETxgFxp+ViVzO1eE2d+wultKKo2SNtLOoz4Q7vNBoLHuFIXazpHUBRRcD3Bqy6gR\nxX4VrH2vbnOICCsZa+wkN7CwqXou+pJxeMUXFyAfSJGflpbPeZ3gDKJmfpatTyiG\ns/QIbtiK/WX/JKM8lQTlLdga\n-----END PRIVATE KEY-----"
+    }
+  ]
+}
