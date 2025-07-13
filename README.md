@@ -20,6 +20,8 @@ To run you:
 Getting Started 
 ----
 
+It works on a m1 mac running Sonoma/Sequoia/Ventura... with python3.11 and moderately up-to-date chrome/firefox browsers.
+
     # install python dependencies
 
     python3 -m pip install -r requirements
@@ -34,10 +36,12 @@ Getting Started
     certitude.py * > ../certz.json
     cd ..
 
-    # start a simple web server -
+    # start a simple web server - here's a dozen or so line one -
     ./https.py &
 
-You can also use `jq` or other tools to look at the JSON directly, of course -
+Then fire up a browser to something like - https://localhost:4443/cert.html?json=certz.json
+
+Of course you can also use `jq` or other tools to look at the JSON directly, of course -
 
     #
     # show certs with matching public/private keys
@@ -46,4 +50,5 @@ You can also use `jq` or other tools to look at the JSON directly, of course -
     private: certz/tinman-ed25519   public: certz/tinman-ed25519.pub
     private: certz/tinman-ed25519   public: certz/tinman-ed25519.pub
 
+Etcetera.
 
