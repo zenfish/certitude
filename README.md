@@ -16,11 +16,13 @@ To run you:
 - run certitude over them
 - look at the results in the browser
 
+I find it useful when checking out embedded systems like cars, BMCs, etc.
 
 Getting Started 
 ----
 
 It works on a m1 mac running Sonoma/Sequoia/Ventura... with python3.11 and moderately up-to-date chrome/firefox browsers.
+Nothing fancy or special.
 
     # install python dependencies
 
@@ -51,4 +53,11 @@ Of course you can also use `jq` or other tools to look at the JSON directly, of 
     private: certz/tinman-ed25519   public: certz/tinman-ed25519.pub
 
 Etcetera.
+
+
+Finally - a complete hack of a program that I'm ashamed of... a shell script that scrobbles around and tries to find certs/keys/etc in a directory tree.
+
+    ./keyfind.sh /foo/bar/dur
+
+It saves potential certificates+ in a subdirectory called "_keys_".
 
